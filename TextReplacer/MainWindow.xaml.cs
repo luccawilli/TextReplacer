@@ -16,6 +16,19 @@ using System.Windows.Shapes;
 namespace TextReplacer {
   /// <summary>A simple tool to replace specific strings with multiple given --> so to generate filled out templates.</summary>
   public partial class MainWindow : Window {
+
+    // The dependency property which will be accessible on the UserControl
+    public static readonly DependencyProperty ReplacementCharsPropertyProperty =
+        DependencyProperty.Register("ReplacementChars", typeof(string), typeof(MainWindow), new UIPropertyMetadata("xxx"));
+    public String ReplacementChars {
+      get { return (String)GetValue(ReplacementCharsPropertyProperty); }
+      set { SetValue(ReplacementCharsPropertyProperty, value); }
+    }
+
+
+    public String InfoTemplateText => $"Info: {ReplacementChars} == 1:1 *{ReplacementChars} == Grosser Anfang _{ReplacementChars} == kleiner Anfang";
+
+    
     public MainWindow() {
       InitializeComponent();
 
@@ -61,7 +74,9 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
       // Replace the text in the template with the label and add it to the output
       StringBuilder resultText = new StringBuilder();
       foreach (var label in splittedLabels) {
-        resultText.AppendLine(templateText.Replace(replacementCharacters, label));
+        String text = templateText.Replace("*" + replacementCharacters, Char.ToUpper(label[0]) + label.Substring(1));
+        text = text.Replace("_" + replacementCharacters, Char.ToLower(label[0]) + label.Substring(1));
+        resultText.AppendLine(text.Replace(replacementCharacters, label));
         resultText.AppendLine();
       }
 
@@ -70,6 +85,10 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
       StatusText.Text = "Status: Alles okay";
     }
 
-
+    private void HandleClearButtonClick(object sender, RoutedEventArgs e) {
+      ResultView.Text = null;
+      StatusText.Foreground = Brushes.Black;
+      StatusText.Text = "Status: Alles okay";
+    }
   }
 }
