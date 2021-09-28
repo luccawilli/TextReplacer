@@ -5,48 +5,122 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextReplacer"
         mc:Ignorable="d"
+        TextOptions.TextRenderingMode="ClearType"
+        TextOptions.TextFormattingMode="Ideal"
+        RenderOptions.ClearTypeHint="Auto"
+        RenderOptions.CachingHint="Cache"
+        SnapsToDevicePixels="True"
+        UseLayoutRounding="True"
         x:Name="MyControl"
         Title="Text Replacer" Height="800" MinHeight="800" Width="720" MinWidth="720" Icon="Replacer.ico">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="4,4,4,4"
+                        BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
+                            <ContentPresenter x:Name="contentPresenter" 
+                                      ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                      Content="{TemplateBinding Content}" 
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      Margin="{TemplateBinding Padding}" 
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="BorderThickness" Value="1" />
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        
+        <Style TargetType="{x:Type TextBlock}" x:Key="Titles">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+        </Style>
+
+        <Style TargetType="{x:Type ContentControl}" x:Key="MaterialGroup">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect 
+                    BlurRadius="5" 
+                    ShadowDepth="1" 
+                    Direction="270" 
+                    Opacity="0.42" 
+                    RenderingBias="Performance" 
+                    Color="#AA000000" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin">
+                <Setter.Value>10</Setter.Value>
+            </Setter>
+            <Setter Property="Padding">
+                <Setter.Value>16</Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition  Height="50"/>
-            <RowDefinition  Height="2*"/>
-            <RowDefinition  Height="3*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="StartButton" Grid.Column="1" Grid.Row="0" Content="Start" Margin="10" Click="HandleStartButtonClicked" Height="30"/>
-        <TextBlock x:Name="StatusText" Text="Status: Alles okay" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="10" Height="20"/>
 
-        <DockPanel Grid.Column="0" Grid.Row="1" LastChildFill="True">
-            <TextBlock DockPanel.Dock="Top" Text="Vorgabetext (Template)" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20"/>
-            <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1.4" CornerRadius="4,4,0,0" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="{Binding InfoTemplateText, ElementName=MyControl}" Background="AliceBlue" TextWrapping="Wrap" />
-            </Border>
-            <TextBox x:Name="TemplateText" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  AcceptsReturn="True" Margin="10,0,10,10" TextWrapping="Wrap" Height="Auto" Text="" />
-        </DockPanel>
-
-        <DockPanel Grid.Column="1" Grid.Row="1" LastChildFill="True">
-            <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20"/>
-            <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Text="\r\n" Height="25" Width="30"/>
-
-            <TextBlock DockPanel.Dock="Top" Text="Ersetzungszeichen" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20"/>
-            <TextBox DockPanel.Dock="Top" x:Name="ReplacementCharacters" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10" Text="{Binding ReplacementChars, ElementName=MyControl}" Height="25"  />
-
-            <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20" />
-            <TextBox x:Name="ToInsertLabels"  Margin="10" TextWrapping="Wrap" AcceptsReturn="True" Text="" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-        </DockPanel>
-        <Border BorderThickness="0,1,0,0" BorderBrush="LightGray" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
-            <DockPanel LastChildFill="True" >
-                <DockPanel DockPanel.Dock="Top" Margin="10,10,10,0">
-                    <TextBlock Text="Output" DockPanel.Dock="Left" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="20"/>
-                    <Button x:Name="ClearButton" DockPanel.Dock="Right" Content="Clear"  HorizontalAlignment="Right"  Click="HandleClearButtonClick" Width="200" Height="30"/>
-                </DockPanel>
-                
-                <TextBox x:Name="ResultView" TextWrapping="Wrap" Text="" Margin="10" VerticalAlignment="Stretch" FontSize="15" HorizontalAlignment="Stretch" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
-            </DockPanel>
+        <Border Grid.Row="0" BorderThickness="1" CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,0,10,0" Background="#579bd3" Padding="8,5,8,5">
+            <TextBlock Text="{Binding InfoTemplateText, ElementName=MyControl}" Foreground="White" TextWrapping="Wrap" />
         </Border>
+
+        <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
+            <Border CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+                <TextBlock x:Name="StatusText" Text="Status: Alles okay" FontWeight="SemiBold" Margin="10" Height="20"/>
+            </Border>
+            <DockPanel HorizontalAlignment="Right">
+                <Button x:Name="ClearButton" Content="Clear" Margin="10" Click="HandleClearButtonClick"  Width="80" Background="White" Foreground="Black" />
+                <Button x:Name="StartButton" Content="Start" Margin="10" Click="HandleStartButtonClicked" Width="80" Background="#8300f5" HorizontalAlignment="Right"/>
+            </DockPanel>
+        </DockPanel>
+
+        <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
+            <Grid Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Column="0" LastChildFill="True">
+                    <TextBlock DockPanel.Dock="Top" Text="Vorgabetext (Template)" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20" Style="{StaticResource Titles}"/>
+                    <TextBox x:Name="TemplateText" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  AcceptsReturn="True" Margin="10,5,10,10" TextWrapping="Wrap" Height="Auto" Text="" />
+                </DockPanel>
+
+                <DockPanel Grid.Column="1" LastChildFill="True">
+                    <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20" Style="{StaticResource Titles}"/>
+                    <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="\r\n" Height="25" Width="30"/>
+
+                    <TextBlock DockPanel.Dock="Top" Text="Ersetzungszeichen" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20" Style="{StaticResource Titles}"/>
+                    <TextBox DockPanel.Dock="Top" x:Name="ReplacementCharacters" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding ReplacementChars, ElementName=MyControl}" Height="25"  />
+
+                    <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20" Style="{StaticResource Titles}"/>
+                    <TextBox x:Name="ToInsertLabels"  Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                </DockPanel>
+            </Grid>
+        </ContentControl>
+
+        <ContentControl Grid.Row="3" Style="{StaticResource MaterialGroup}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <DockPanel Background="White">
+                <TextBlock DockPanel.Dock="Top" Text="Output" Height="20"  Margin="15,15,15,0" Style="{StaticResource Titles}"/>
+                <TextBox x:Name="ResultView" TextWrapping="Wrap" Text="" Margin="15,0,15,15" IsReadOnly="True" IsReadOnlyCaretVisible="True" BorderThickness="0"/>
+            </DockPanel>
+        </ContentControl>
     </Grid>
 </Window>
