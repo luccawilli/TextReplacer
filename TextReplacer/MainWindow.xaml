@@ -72,14 +72,16 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" BorderThickness="1" CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,0,10,0" Background="#579bd3" Padding="8,5,8,5">
-            <TextBlock Text="{Binding InfoTemplateText, ElementName=MyControl}" Foreground="White" TextWrapping="Wrap" />
+        <Border Grid.Row="0" BorderThickness="1" CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,5,10,5" Background="#579bd3" Padding="8,5,8,5" Height="30">
+            <DockPanel>
+                <TextBlock Text="{Binding InfoTemplateText, ElementName=MyControl}" Foreground="White" TextWrapping="Wrap" />
+            </DockPanel>
         </Border>
 
         <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
