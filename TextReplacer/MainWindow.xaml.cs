@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace TextReplacer {
@@ -19,7 +22,17 @@ namespace TextReplacer {
 
     public String InfoTemplateText => $"Info: {ReplacementChars} == 1:1 *{ReplacementChars} == Grosser Anfang _{ReplacementChars} == kleiner Anfang";
 
-    
+
+    // The dependency property which will be accessible on the UserControl
+    public static readonly DependencyProperty InfoMessagesPropertyProperty =
+        DependencyProperty.Register("InfoMessages", typeof(ObservableCollection<InfoMessage>), typeof(MainWindow), new UIPropertyMetadata(new ObservableCollection<InfoMessage>()));
+    public ObservableCollection<InfoMessage> InfoMessages {
+      get { return (ObservableCollection<InfoMessage>)GetValue(InfoMessagesPropertyProperty); }
+      set { SetValue(InfoMessagesPropertyProperty, value); }
+    }
+
+
+
     public MainWindow() {
       InitializeComponent();
 
@@ -30,6 +43,7 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
       ToInsertLabels.ToolTip = "Diese Werte werden eingefügt für das 'Ersetzungszeichen', für jeden Wert ergibt es einen eigen Template-Output";
 
       ReplacementCharacters.ToolTip = "Dieser Wert wird im Template ersetzt";
+      AddDefaultInfo();
     }
 
 
@@ -46,8 +60,7 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
         || String.IsNullOrEmpty(replacementCharacters) 
         || String.IsNullOrEmpty(seperator) 
         || String.IsNullOrEmpty(toInsertLabelText)) {
-        StatusText.Foreground = Brushes.Red;
-        StatusText.Text = "Alle Felder müssen ausgefüllt sein";
+        SetStatusToInfo("Alle Felder müssen ausgefüllt sein");
         return;
       }
 
@@ -57,8 +70,7 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
       }
       var splittedLabels = toInsertLabelText.Split(new String[]{ seperator }, StringSplitOptions.RemoveEmptyEntries);
       if (!splittedLabels.Any()) {
-        StatusText.Foreground = Brushes.Red;
-        StatusText.Text = "Keine Labels gefunden";
+        SetStatusToInfo("Keine Labels gefunden");
         return;
       }
 
@@ -71,15 +83,43 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
         resultText.AppendLine();
       }
 
-      ResultView.Text = resultText.ToString();
-      StatusText.Foreground = Brushes.Black;
-      StatusText.Text = "Status: Alles okay";
+      ResultView.Text = resultText.ToString(); 
+      SetStatusToStandard();
     }
 
     private void HandleClearButtonClick(object sender, RoutedEventArgs e) {
       ResultView.Text = null;
+      InfoMessages.Clear();
+      AddDefaultInfo();
+      SetStatusToStandard();
+    }
+
+    private void SetStatusToInfo(String text) {
+      StatusText.Foreground = Brushes.Red;
+      StatusText.Text = text;
+
+      InfoMessages.Add(new InfoMessage() { Brush = Brushes.Red, Message = text });
+    }
+
+    private void SetStatusToStandard() {
       StatusText.Foreground = Brushes.Black;
       StatusText.Text = "Status: Alles okay";
+    }
+
+    private void AddDefaultInfo() {
+      InfoMessages.Add(new InfoMessage() { Brush = InfoMessage.TextReplacerBlue, Message = InfoTemplateText });
+    }
+
+    /// <summary>Removes the selected message from the list.</summary>
+    /// <param name="sender">Object</param>
+    /// <param name="e">RoutedEventArgs</param>
+    private void HandleDeleteMessageClick(Object sender, RoutedEventArgs e) {
+      FrameworkElement element = sender as FrameworkElement;
+      InfoMessage message = element?.DataContext as InfoMessage;
+      if (message == null) {
+        return;
+      }
+      InfoMessages.Remove(message);
     }
   }
 }
