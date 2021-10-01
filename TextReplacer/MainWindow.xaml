@@ -173,6 +173,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="2"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
@@ -237,7 +238,9 @@
             </Grid>
         </ContentControl>
 
-        <ContentControl Grid.Row="3" Style="{StaticResource MaterialGroup}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
+
+        <ContentControl Grid.Row="4" Style="{StaticResource MaterialGroup}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <DockPanel Background="White">
                 <TextBlock DockPanel.Dock="Top" Text="Output" Height="20"  Margin="15,15,15,0" Style="{StaticResource Titles}"/>
                 <TextBox x:Name="ResultView" TextWrapping="Wrap" Text="" Margin="15,0,15,15" IsReadOnly="True" IsReadOnlyCaretVisible="True" BorderThickness="0"/>
