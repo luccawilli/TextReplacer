@@ -3,8 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace TextReplacer {
@@ -56,9 +54,9 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
       String seperator = SplitCharsForLabels.Text;
       String toInsertLabelText = ToInsertLabels.Text;
 
-      if (String.IsNullOrEmpty(templateText) 
-        || String.IsNullOrEmpty(replacementCharacters) 
-        || String.IsNullOrEmpty(seperator) 
+      if (String.IsNullOrEmpty(templateText)
+        || String.IsNullOrEmpty(replacementCharacters)
+        || String.IsNullOrEmpty(seperator)
         || String.IsNullOrEmpty(toInsertLabelText)) {
         SetStatusToInfo("Alle Felder müssen ausgefüllt sein");
         return;
@@ -68,7 +66,7 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
       if (seperator == "\\r\\n") {
         seperator = Environment.NewLine;
       }
-      var splittedLabels = toInsertLabelText.Split(new String[]{ seperator }, StringSplitOptions.RemoveEmptyEntries);
+      var splittedLabels = toInsertLabelText.Split(new String[] { seperator }, StringSplitOptions.RemoveEmptyEntries);
       if (!splittedLabels.Any()) {
         SetStatusToInfo("Keine Labels gefunden");
         return;
@@ -83,7 +81,7 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
         resultText.AppendLine();
       }
 
-      ResultView.Text = resultText.ToString(); 
+      ResultView.Text = resultText.ToString();
       SetStatusToStandard();
     }
 
