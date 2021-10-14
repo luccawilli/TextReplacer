@@ -30,6 +30,17 @@
                     Color="#AA000000" />
             </Setter.Value>
         </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border BorderThickness="1,1,1,1"
+                            CornerRadius="4" 
+                            Background="White" >
+                        <ContentPresenter Content="{TemplateBinding Content}" Margin="4"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Margin">
             <Setter.Value>10</Setter.Value>
         </Setter>
