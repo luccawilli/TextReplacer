@@ -28,15 +28,23 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="4,4,4,4"
+                            <Border x:Name="OuterBorder" CornerRadius="3"
+                        BorderThickness="2" BorderBrush="Transparent" Background="White" Padding="1">
+                                <Border CornerRadius="4,4,4,4"
                         BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
-                                <ContentPresenter x:Name="contentPresenter" 
+                                    <ContentPresenter x:Name="contentPresenter" 
                                       ContentTemplate="{TemplateBinding ContentTemplate}" 
                                       Content="{TemplateBinding Content}" 
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       Margin="{TemplateBinding Padding}" 
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Border>
                             </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="OuterBorder" Property="BorderBrush" Value="#6E00CF" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -76,24 +84,32 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="4,4,4,4"
+                            <Border x:Name="OuterBorder" CornerRadius="3"
+                        BorderThickness="2" BorderBrush="Transparent" Background="White" Padding="1">
+                                <Border CornerRadius="4"
                         BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
-                                <DockPanel>
-                                    <Image Source="{StaticResource StartDrawingImage}" Width="15" Margin="5,0,0,0" />
-                                    <ContentPresenter x:Name="contentPresenter" 
+                                    <DockPanel>
+                                        <Image Source="{StaticResource StartDrawingImage}" Width="15" Margin="5,0,0,0" />
+                                        <ContentPresenter x:Name="contentPresenter" 
                                       ContentTemplate="{TemplateBinding ContentTemplate}" 
                                       Content="{TemplateBinding Content}" 
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       Margin="{TemplateBinding Padding}" 
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                </DockPanel>
+                                    </DockPanel>
+                                </Border>
                             </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="OuterBorder" Property="BorderBrush" Value="#6E00CF" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#6E00CF"></Setter>
+                        <Setter Property="Background" Value="#6E00CF" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -102,7 +118,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="65"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2"/>
             <RowDefinition Height="3*"/>
@@ -140,8 +156,8 @@
                 <TextBlock x:Name="StatusText" Text="Status: Alles okay" FontWeight="SemiBold" Margin="10" Height="20"/>
             </Border>
             <DockPanel HorizontalAlignment="Right">
-                <Button x:Name="ClearButton" Content="Clear" Margin="10" Click="HandleClearButtonClick"  Width="80" Style="{StaticResource SecondaryButton}"/>
-                <Button x:Name="StartButton" Content="Start" Margin="10" Click="HandleStartButtonClicked" Width="80" HorizontalAlignment="Right" Style="{StaticResource PrimaryButtonWithIcon}"/>
+                <Button x:Name="ClearButton" Content="Clear" Margin="10,10,5,10" Click="HandleClearButtonClick"  Width="80" Style="{StaticResource SecondaryButton}"/>
+                <Button x:Name="StartButton" Content="Start" Margin="5,10,10,10" Click="HandleStartButtonClicked" Width="80" HorizontalAlignment="Right" Style="{StaticResource PrimaryButtonWithIcon}"/>
             </DockPanel>
         </DockPanel>
 
