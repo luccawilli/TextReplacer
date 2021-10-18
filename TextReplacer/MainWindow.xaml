@@ -12,7 +12,7 @@
         SnapsToDevicePixels="True"
         UseLayoutRounding="True"
         x:Name="MyControl"
-        Title="Text Replacer" Height="800" MinHeight="750" Width="720" MinWidth="420" Icon="Replacer.ico">
+        Title="Text Replacer" Height="800" MinHeight="630" Width="720" MinWidth="420" Icon="Replacer.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -121,7 +121,7 @@
             <RowDefinition Height="65"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <ListView Grid.Row="0" ItemsSource="{Binding InfoMessages, ElementName=MyControl}" BorderThickness="0" Focusable="False">
