@@ -16,103 +16,8 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="SharedStyles.xaml"/>
-                <ResourceDictionary Source="Icons.xaml"/>
+                <ResourceDictionary Source="Styles\StylesWithIcons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
-            <Style TargetType="{x:Type Button}" x:Key="SecondaryButton">
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Foreground" Value="Black" />
-                <Setter Property="FontWeight" Value="Medium"/>
-                <Setter Property="Background" Value="White"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border x:Name="OuterBorder" CornerRadius="3"
-                        BorderThickness="2" BorderBrush="Transparent" Background="White" Padding="1">
-                                <Border CornerRadius="4,4,4,4"
-                        BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
-                                    <ContentPresenter x:Name="contentPresenter" 
-                                      ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                      Content="{TemplateBinding Content}" 
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      Margin="{TemplateBinding Padding}" 
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                </Border>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsFocused" Value="True">
-                                    <Setter TargetName="OuterBorder" Property="BorderBrush" Value="#6E00CF" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#E6E6E6"></Setter>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
-            <Style TargetType="{x:Type Button}" x:Key="TransparentButton">
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <ContentPresenter x:Name="contentPresenter" 
-                                      ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                      Content="{TemplateBinding Content}" 
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      Margin="{TemplateBinding Padding}" 
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#E6E6E6"></Setter>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
-            <Style TargetType="{x:Type Button}" x:Key="PrimaryButtonWithIcon">
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Foreground" Value="White" />
-                <Setter Property="FontWeight" Value="Medium"/>
-                <Setter Property="Background" Value="#7C00E8"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border x:Name="OuterBorder" CornerRadius="3"
-                        BorderThickness="2" BorderBrush="Transparent" Background="White" Padding="1">
-                                <Border CornerRadius="4"
-                        BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
-                                    <DockPanel>
-                                        <Image Source="{StaticResource StartDrawingImage}" Width="15" Margin="5,0,0,0" />
-                                        <ContentPresenter x:Name="contentPresenter" 
-                                      ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                      Content="{TemplateBinding Content}" 
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      Margin="{TemplateBinding Padding}" 
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                    </DockPanel>
-                                </Border>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsFocused" Value="True">
-                                    <Setter TargetName="OuterBorder" Property="BorderBrush" Value="#6E00CF" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#6E00CF" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -168,18 +73,18 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Column="0" LastChildFill="True">
-                    <TextBlock DockPanel.Dock="Top" Text="Vorgabetext (Template)" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20" Style="{StaticResource Titles}"/>
-                    <TextBox x:Name="TemplateText" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  AcceptsReturn="True" Margin="10,5,10,10" TextWrapping="Wrap" Height="Auto" Text="" />
+                    <TextBlock DockPanel.Dock="Top" Text="Vorgabetext (Template)" HorizontalAlignment="Left" Style="{StaticResource Titles}"/>
+                    <TextBox x:Name="TemplateText" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" Margin="10,5,10,10" TextWrapping="Wrap" Height="Auto" Text="" />
                 </DockPanel>
 
                 <DockPanel Grid.Column="1" LastChildFill="True">
-                    <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20" Style="{StaticResource Titles}"/>
+                    <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
                     <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="\r\n" Height="25" Width="30"/>
 
-                    <TextBlock DockPanel.Dock="Top" Text="Ersetzungszeichen" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20" Style="{StaticResource Titles}"/>
+                    <TextBlock DockPanel.Dock="Top" Text="Ersetzungszeichen" Style="{StaticResource Titles}"/>
                     <TextBox DockPanel.Dock="Top" x:Name="ReplacementCharacters" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding ReplacementChars, ElementName=MyControl}" Height="25"  />
 
-                    <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="10,10,10,0" Height="20" Style="{StaticResource Titles}"/>
+                    <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" Style="{StaticResource Titles}"/>
                     <TextBox x:Name="ToInsertLabels"  Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 </DockPanel>
             </Grid>
@@ -189,7 +94,7 @@
 
         <ContentControl Grid.Row="4" Style="{StaticResource MaterialGroup}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <DockPanel Background="White">
-                <TextBlock DockPanel.Dock="Top" Text="Output" Height="20"  Margin="15,15,15,0" Style="{StaticResource Titles}"/>
+                <TextBlock DockPanel.Dock="Top" Text="Output" Margin="15,15,15,0" Style="{StaticResource Titles}"/>
                 <TextBox x:Name="ResultView" TextWrapping="Wrap" Text="" Margin="15,0,15,15" IsReadOnly="True" IsReadOnlyCaretVisible="True" BorderThickness="0"/>
             </DockPanel>
         </ContentControl>
