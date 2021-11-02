@@ -53,6 +53,7 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
       String replacementCharacters = ReplacementCharacters.Text;
       String seperator = SplitCharsForLabels.Text;
       String toInsertLabelText = ToInsertLabels.Text;
+      Boolean? addNewLines = HasNewLinesInBetween.IsChecked;
 
       if (String.IsNullOrEmpty(templateText)
         || String.IsNullOrEmpty(replacementCharacters)
@@ -78,7 +79,9 @@ Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'E
         String text = templateText.Replace("*" + replacementCharacters, Char.ToUpper(label[0]) + label.Substring(1));
         text = text.Replace("_" + replacementCharacters, Char.ToLower(label[0]) + label.Substring(1));
         resultText.AppendLine(text.Replace(replacementCharacters, label));
-        resultText.AppendLine();
+        if (addNewLines.HasValue && addNewLines.Value) {
+          resultText.AppendLine();
+        }
       }
 
       ResultView.Text = resultText.ToString();

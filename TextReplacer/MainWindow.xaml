@@ -81,6 +81,10 @@
                     <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
                     <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="\r\n" Height="25" Width="30"/>
 
+                    <CheckBox DockPanel.Dock="Top" x:Name="HasNewLinesInBetween" Margin="10,5,10,5">
+                        <TextBlock DockPanel.Dock="Top" Text="Mit Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
+                    </CheckBox>
+
                     <TextBlock DockPanel.Dock="Top" Text="Ersetzungszeichen" Style="{StaticResource Titles}"/>
                     <TextBox DockPanel.Dock="Top" x:Name="ReplacementCharacters" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding ReplacementChars, ElementName=MyControl}" Height="25"  />
 
