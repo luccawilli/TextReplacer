@@ -70,14 +70,15 @@
             <Grid Background="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Column="0" LastChildFill="True">
                     <TextBlock DockPanel.Dock="Top" Text="Vorgabetext (Template)" HorizontalAlignment="Left" Style="{StaticResource Titles}"/>
                     <TextBox x:Name="TemplateText" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" Margin="10,5,10,10" TextWrapping="Wrap" Height="Auto" Text="" />
                 </DockPanel>
-
-                <DockPanel Grid.Column="1" LastChildFill="True">
+                <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <DockPanel Grid.Column="2" LastChildFill="True">
                     <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
                     <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="\r\n" Height="25" Width="30"/>
 
