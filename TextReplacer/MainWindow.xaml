@@ -22,22 +22,37 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
             <ColumnDefinition Width="40" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <StackPanel>
-            <Button Height="50" Background="White" BorderThickness="0">
-                <Image Source="{StaticResource TextReplacerDrawingImage}" Width="20" />
-            </Button>
-            <Button Height="50" Background="White" BorderThickness="0">
-                <Image Source="{StaticResource TemplateCreatorDrawingImage}" Width="22" />
-            </Button>
-            <Button Height="50" Background="White" BorderThickness="0">
-                <Image Source="{StaticResource RgExDrawingImage}" Width="16" />
-            </Button>
-        </StackPanel>
-        <Border Grid.Column="1" CornerRadius="5" Padding="5" Background="#F6F8FA">
+        <TabControl Grid.Column="0" TabStripPlacement="Left" BorderThickness="0" Background="White">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Background="White">
+                        <Image Source="{StaticResource TextReplacerDrawingImage}" Width="20" Height="50"/>
+                    </StackPanel>
+                </TabItem.Header>
+                
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Background="White">
+                        <Image Source="{StaticResource TemplateCreatorDrawingImage}" Width="22" Height="50"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Background="White">
+                        <Image Source="{StaticResource RgExDrawingImage}" Width="16" Height="50"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
+
+        <Border Grid.Column="2" CornerRadius="5" Padding="5" Background="#F6F8FA">
             <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

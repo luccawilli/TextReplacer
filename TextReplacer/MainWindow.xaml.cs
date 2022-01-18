@@ -29,8 +29,6 @@ namespace TextReplacer {
       set { SetValue(InfoMessagesPropertyProperty, value); }
     }
 
-
-
     public MainWindow() {
       InitializeComponent();
 
