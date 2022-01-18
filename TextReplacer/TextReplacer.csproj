@@ -59,9 +59,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\CustomTabHeader.xaml.cs">
+      <DependentUpon>CustomTabHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RgExView.xaml.cs">
+      <DependentUpon>RgExView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateCreatorView.xaml.cs">
+      <DependentUpon>TemplateCreatorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TextReplacerView.xaml.cs">
       <DependentUpon>TextReplacerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Page Include="Control\CustomTabHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RgExView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +102,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\StylesWithIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TemplateCreatorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

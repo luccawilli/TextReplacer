@@ -59,4 +59,28 @@
             <Setter.Value>16</Setter.Value>
         </Setter>
     </Style>
+
+    <SolidColorBrush x:Key="BrushColor" Color="#F6F8FA" />
+    <Style x:Key="PillsTabItem" TargetType="{x:Type TabItem}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border Name="Border" BorderThickness="0" CornerRadius="4" Background="White" Margin="5,0,0,5" Padding="5">
+                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        ContentSource="Header"
+                                        Margin="10,2" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource BrushColor}" />
+                            <Setter Property="FontWeight" Value="Medium" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

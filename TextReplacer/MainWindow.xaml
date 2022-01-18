@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextReplacer"
+        xmlns:t="clr-namespace:TextReplacer.Control"
         mc:Ignorable="d"
         TextOptions.TextRenderingMode="ClearType"
         TextOptions.TextFormattingMode="Ideal"
@@ -22,38 +23,31 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <TabControl Grid.Column="0" TabStripPlacement="Left" BorderThickness="0" Background="White">
-            <TabItem>
+            <TabItem Style="{StaticResource PillsTabItem}">
                 <TabItem.Header>
-                    <StackPanel Background="White">
-                        <Image Source="{StaticResource TextReplacerDrawingImage}" Width="20" Height="50"/>
-                    </StackPanel>
+                    <t:CustomTabHeader ImageSource="{StaticResource TextReplacerDrawingImage}" Text="TextReplacer" />
                 </TabItem.Header>
                 
             </TabItem>
-            <TabItem>
+            <TabItem Style="{StaticResource PillsTabItem}">
                 <TabItem.Header>
-                    <StackPanel Background="White">
-                        <Image Source="{StaticResource TemplateCreatorDrawingImage}" Width="22" Height="50"/>
-                    </StackPanel>
+                    <t:CustomTabHeader ImageSource="{StaticResource TemplateCreatorDrawingImage}" Text="TemplateCreator" ImageWidth="22" />
                 </TabItem.Header>
             </TabItem>
-            <TabItem>
+            <TabItem Style="{StaticResource PillsTabItem}">
                 <TabItem.Header>
-                    <StackPanel Background="White">
-                        <Image Source="{StaticResource RgExDrawingImage}" Width="16" Height="50"/>
-                    </StackPanel>
+                    <t:CustomTabHeader ImageSource="{StaticResource RgExDrawingImage}" Text="RegExr" ImageWidth="16" />
                 </TabItem.Header>
             </TabItem>
         </TabControl>
 
-        <Border Grid.Column="2" CornerRadius="5" Padding="5" Background="#F6F8FA">
-            <Grid Grid.Column="1">
+        <Border Grid.Column="1" CornerRadius="5" Padding="5" Background="#F6F8FA">
+            <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="65"/>
