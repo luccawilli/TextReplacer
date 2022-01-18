@@ -33,6 +33,9 @@
             <Button Height="50" Background="WhiteSmoke" BorderThickness="0">
                 <Image Source="{StaticResource TemplateCreatorDrawingImage}" Width="20" />
             </Button>
+            <Button Height="50" Background="WhiteSmoke" BorderThickness="0">
+                <Image Source="{StaticResource RgExDrawingImage}" Width="20" />
+            </Button>
         </StackPanel>
         
         <Grid Grid.Column="1">
