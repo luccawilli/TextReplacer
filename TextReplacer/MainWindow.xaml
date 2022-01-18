@@ -26,19 +26,19 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="WhiteSmoke">
-            <Button Height="50" Background="WhiteSmoke" BorderThickness="0">
+        <StackPanel>
+            <Button Height="50" Background="White" BorderThickness="0">
                 <Image Source="{StaticResource TextReplacerDrawingImage}" Width="20" />
             </Button>
-            <Button Height="50" Background="WhiteSmoke" BorderThickness="0">
+            <Button Height="50" Background="White" BorderThickness="0">
                 <Image Source="{StaticResource TemplateCreatorDrawingImage}" Width="20" />
             </Button>
-            <Button Height="50" Background="WhiteSmoke" BorderThickness="0">
-                <Image Source="{StaticResource RgExDrawingImage}" Width="20" />
+            <Button Height="50" Background="White" BorderThickness="0">
+                <Image Source="{StaticResource RgExDrawingImage}" Width="16" />
             </Button>
         </StackPanel>
-        
-        <Grid Grid.Column="1">
+        <Border Grid.Column="1" CornerRadius="5" Padding="5" Background="WhiteSmoke">
+            <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="65"/>
@@ -47,7 +47,7 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
-            <ListView Grid.Row="0" ItemsSource="{Binding InfoMessages, ElementName=MyControl}" BorderThickness="0" Focusable="False">
+            <ListView Grid.Row="0" ItemsSource="{Binding InfoMessages, ElementName=MyControl}" BorderThickness="0" Focusable="False" Background="WhiteSmoke">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="1" CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,5,10,5" Background="{Binding Brush}" Padding="8,5,8,5" Height="30">
@@ -122,5 +122,6 @@
                 </DockPanel>
             </ContentControl>
         </Grid>
+        </Border>
     </Grid>
 </Window>
