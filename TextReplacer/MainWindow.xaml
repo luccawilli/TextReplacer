@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextReplacer"
         xmlns:t="clr-namespace:TextReplacer.Control"
+        xmlns:designData="clr-namespace:TextReplacer.ViewModel"
         mc:Ignorable="d"
         TextOptions.TextRenderingMode="ClearType"
         TextOptions.TextFormattingMode="Ideal"
@@ -13,6 +14,7 @@
         SnapsToDevicePixels="True"
         UseLayoutRounding="True"
         x:Name="MyControl"
+        d:DataContext="{d:DesignInstance {x:Type designData:MainViewModel}}"
         Title="Text Replacer" Height="800" MinHeight="630" Width="720" MinWidth="420" Icon="Replacer.ico">
     <Window.Resources>
         <ResourceDictionary>
@@ -22,17 +24,72 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <TabControl Grid.Column="0" TabStripPlacement="Left" BorderThickness="0" Background="White">
+        <TabControl TabStripPlacement="Left" BorderThickness="0" Background="White">
             <TabItem Style="{StaticResource PillsTabItem}">
                 <TabItem.Header>
                     <t:CustomTabHeader ImageSource="{StaticResource TextReplacerDrawingImage}" Text="TextReplacer" />
                 </TabItem.Header>
-                
+                <Border CornerRadius="5" Padding="10,5,5,5" Background="{StaticResource MainBackgroundBrush}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="65"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+
+                        <t:InfoMessageList Grid.Row="0" InfoMessages="{Binding InfoMessages}" />
+
+                        <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
+                            <Border CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+                                <TextBlock x:Name="StatusText" Text="{Binding StatusText}" Foreground="{Binding StatusForeground}" FontWeight="SemiBold" Margin="10" Height="20"/>
+                            </Border>
+                            <DockPanel HorizontalAlignment="Right">
+                                <Button x:Name="ClearButton" Content="Clear" Margin="10,10,5,10" Command="{Binding ClearCommand}"  Width="80" Style="{StaticResource SecondaryButton}"/>
+                                <Button x:Name="StartButton" Content="Start" Margin="5,10,10,10" Command="{Binding StartCommand}" Width="80" HorizontalAlignment="Right" Style="{StaticResource PrimaryButtonWithIcon}"/>
+                            </DockPanel>
+                        </DockPanel>
+
+                        <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0" LastChildFill="True">
+                                    <TextBlock DockPanel.Dock="Top" Text="Vorgabetext (Template)" HorizontalAlignment="Left" Style="{StaticResource Titles}"/>
+                                    <TextBox x:Name="TemplateText" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" Margin="10,5,10,10" TextWrapping="Wrap" Height="Auto" Text="{Binding TemplateText}" />
+                                </DockPanel>
+                                <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                <DockPanel Grid.Column="2" LastChildFill="True">
+                                    <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
+                                    <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitCharsForLabels}" Height="25" Width="30" AcceptsReturn="False"/>
+
+                                    <CheckBox DockPanel.Dock="Top" x:Name="HasNewLinesInBetween" Margin="10,5,10,5" IsChecked="{Binding HasNewLinesInBetween}">
+                                        <TextBlock DockPanel.Dock="Top" Text="Mit Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
+                                    </CheckBox>
+
+                                    <TextBlock DockPanel.Dock="Top" Text="Ersetzungszeichen" Style="{StaticResource Titles}"/>
+                                    <TextBox DockPanel.Dock="Top" x:Name="ReplacementCharacters" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding ReplacementChars}" Height="25"  />
+
+                                    <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" Style="{StaticResource Titles}"/>
+                                    <TextBox x:Name="ToInsertLabels"  Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ToInsertLabels}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                </DockPanel>
+                            </Grid>
+                        </ContentControl>
+
+                        <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
+
+                        <ContentControl Grid.Row="4" Style="{StaticResource MaterialGroup}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <DockPanel Background="White">
+                                <TextBlock DockPanel.Dock="Top" Text="Output" Margin="15,15,15,0" Style="{StaticResource Titles}"/>
+                                <TextBox x:Name="ResultView" TextWrapping="Wrap" Text="{Binding ResultText}" Margin="15,0,15,15" IsReadOnly="True" IsReadOnlyCaretVisible="True" BorderThickness="0"/>
+                            </DockPanel>
+                        </ContentControl>
+                    </Grid>
+                </Border>
             </TabItem>
             <TabItem Style="{StaticResource PillsTabItem}">
                 <TabItem.Header>
@@ -46,91 +103,6 @@
             </TabItem>
         </TabControl>
 
-        <Border Grid.Column="1" CornerRadius="5" Padding="5" Background="#F6F8FA">
-            <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="65"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-
-            <ListView Grid.Row="0" ItemsSource="{Binding InfoMessages, ElementName=MyControl}" BorderThickness="0" Focusable="False" Background="WhiteSmoke">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="1" CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,5,10,5" Background="{Binding Brush}" Padding="8,5,8,5" Height="30">
-                            <DockPanel>
-                                <TextBlock Text="{Binding Message}" Foreground="White" TextWrapping="Wrap" />
-                                <Button Click="HandleDeleteMessageClick" HorizontalAlignment="Right" Style="{StaticResource TransparentButton}">
-                                    <Image Source="{StaticResource DeleteDrawingImage}" Width="10" />
-                                </Button>
-                            </DockPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <Setter Property="Background" Value="Transparent" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                    <ContentPresenter />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
-
-            <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
-                <Border CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                    <TextBlock x:Name="StatusText" Text="Status: Alles okay" FontWeight="SemiBold" Margin="10" Height="20"/>
-                </Border>
-                <DockPanel HorizontalAlignment="Right">
-                    <Button x:Name="ClearButton" Content="Clear" Margin="10,10,5,10" Click="HandleClearButtonClick"  Width="80" Style="{StaticResource SecondaryButton}"/>
-                    <Button x:Name="StartButton" Content="Start" Margin="5,10,10,10" Click="HandleStartButtonClicked" Width="80" HorizontalAlignment="Right" Style="{StaticResource PrimaryButtonWithIcon}"/>
-                </DockPanel>
-            </DockPanel>
-
-            <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
-                <Grid Background="White">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <DockPanel Grid.Column="0" LastChildFill="True">
-                        <TextBlock DockPanel.Dock="Top" Text="Vorgabetext (Template)" HorizontalAlignment="Left" Style="{StaticResource Titles}"/>
-                        <TextBox x:Name="TemplateText" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" Margin="10,5,10,10" TextWrapping="Wrap" Height="Auto" Text="" />
-                    </DockPanel>
-                    <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    <DockPanel Grid.Column="2" LastChildFill="True">
-                        <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
-                        <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="\r\n" Height="25" Width="30"/>
-
-                        <CheckBox DockPanel.Dock="Top" x:Name="HasNewLinesInBetween" Margin="10,5,10,5">
-                            <TextBlock DockPanel.Dock="Top" Text="Mit Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
-                        </CheckBox>
-
-                        <TextBlock DockPanel.Dock="Top" Text="Ersetzungszeichen" Style="{StaticResource Titles}"/>
-                        <TextBox DockPanel.Dock="Top" x:Name="ReplacementCharacters" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding ReplacementChars, ElementName=MyControl}" Height="25"  />
-
-                        <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" Style="{StaticResource Titles}"/>
-                        <TextBox x:Name="ToInsertLabels"  Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    </DockPanel>
-                </Grid>
-            </ContentControl>
-
-            <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
-
-            <ContentControl Grid.Row="4" Style="{StaticResource MaterialGroup}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <DockPanel Background="White">
-                    <TextBlock DockPanel.Dock="Top" Text="Output" Margin="15,15,15,0" Style="{StaticResource Titles}"/>
-                    <TextBox x:Name="ResultView" TextWrapping="Wrap" Text="" Margin="15,0,15,15" IsReadOnly="True" IsReadOnlyCaretVisible="True" BorderThickness="0"/>
-                </DockPanel>
-            </ContentControl>
-        </Grid>
-        </Border>
+        
     </Grid>
 </Window>
