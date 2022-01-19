@@ -35,11 +35,13 @@
                 <TabItem.Header>
                     <t:CustomTabHeader ImageSource="{StaticResource TemplateCreatorDrawingImage}" Text="TemplateCreator" ImageWidth="22" />
                 </TabItem.Header>
+                <local:TemplateCreatorView DataContext="{Binding TemplateCreatorViewModel}" FontWeight="Normal" />
             </TabItem>
             <TabItem Style="{StaticResource PillsTabItem}">
                 <TabItem.Header>
                     <t:CustomTabHeader ImageSource="{StaticResource RgExDrawingImage}" Text="RegExr" ImageWidth="16" />
                 </TabItem.Header>
+                <local:RgExView DataContext="{Binding RgExViewModel}" FontWeight="Normal" />
             </TabItem>
         </TabControl>
 
