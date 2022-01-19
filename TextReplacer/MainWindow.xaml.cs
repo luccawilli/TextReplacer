@@ -15,15 +15,6 @@ namespace TextReplacer {
     public MainWindow() {
       DataContext = ViewModel = new MainViewModel();
       InitializeComponent();
-
-      TemplateText.ToolTip = @"Hier rein kommt das Template, 
-also der Text in dem gewisse Bereiche ersetzt werden sollen.
-Bsp: var xxx = 123 * 90; // xxx wird ersetzt mit einem Wert aus der Liste der 'Einzufügende Labels'";
-
-      ToInsertLabels.ToolTip = "Diese Werte werden eingefügt für das 'Ersetzungszeichen', für jeden Wert ergibt es einen eigen Template-Output";
-
-      ReplacementCharacters.ToolTip = "Dieser Wert wird im Template ersetzt";
-      //AddDefaultInfo();
     }
 
   }

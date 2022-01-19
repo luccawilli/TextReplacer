@@ -67,6 +67,15 @@
     <Compile Include="Control\InfoMessageList.xaml.cs">
       <DependentUpon>InfoMessageList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ResultTextBox.xaml.cs">
+      <DependentUpon>ResultTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\StatusCommandToolbar.xaml.cs">
+      <DependentUpon>StatusCommandToolbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TemplateTextBox.xaml.cs">
+      <DependentUpon>TemplateTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RgExView.xaml.cs">
       <DependentUpon>RgExView.xaml</DependentUpon>
     </Compile>
@@ -76,12 +85,28 @@
     <Compile Include="TextReplacerView.xaml.cs">
       <DependentUpon>TextReplacerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\RgExViewModel.cs" />
+    <Compile Include="ViewModel\TemplateCreatorViewModel.cs" />
+    <Compile Include="ViewModel\TextReplacerViewModel.cs" />
     <Page Include="Control\CustomTabHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\InfoMessageList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ResultTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\StatusCommandToolbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\TemplateTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

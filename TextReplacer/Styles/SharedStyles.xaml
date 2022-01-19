@@ -78,7 +78,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="Border" Property="Background" Value="{StaticResource MainBackgroundBrush}" />
-                            <!--<Setter Property="FontWeight" Value="Medium" />-->
+                            <Setter Property="FontWeight" Value="Medium" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
