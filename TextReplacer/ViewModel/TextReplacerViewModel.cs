@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using System.Windows.Media;
 
 namespace TextReplacer.ViewModel {
   public class TextReplacerViewModel : BaseViewModel {
@@ -31,12 +30,6 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _toInsertLabels, value);
     }
 
-    private Boolean? _hasNewLinesInBetween = false;
-    public Boolean? HasNewLinesInBetween {
-      get => _hasNewLinesInBetween;
-      set => SetProperty(ref _hasNewLinesInBetween, value);
-    }
-
     #region Methods
 
     /// <summary>Create a result from the given template and replaces the replacement chars with the given insert labels.</summary>
@@ -55,7 +48,7 @@ namespace TextReplacer.ViewModel {
         return;
       }
 
-      // plit the labels on the seperator
+      // split the labels on the seperator
       if (seperator == "\\r\\n") {
         seperator = Environment.NewLine;
       }
@@ -81,12 +74,9 @@ namespace TextReplacer.ViewModel {
     }
 
     public override void Clear() {
-      ResultText = null;
-      InfoMessages.Clear();
+      base.Clear();
       AddInfo(InfoTemplateText);
-      SetStatusToStandard();
     }
-
     #endregion
   }
 }

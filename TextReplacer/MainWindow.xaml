@@ -15,7 +15,7 @@
         UseLayoutRounding="True"
         x:Name="MyControl"
         d:DataContext="{d:DesignInstance {x:Type designData:MainViewModel}}"
-        Title="Text Replacer" Height="800" MinHeight="630" Width="720" MinWidth="420" Icon="Replacer.ico">
+        Title="Text Replacer" Height="850" MinHeight="680" Width="760" MinWidth="520" Icon="Replacer.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

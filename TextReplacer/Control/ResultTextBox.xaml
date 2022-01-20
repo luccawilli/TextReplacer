@@ -15,7 +15,12 @@
     </UserControl.Resources>
     <ContentControl Style="{StaticResource MaterialGroup}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <DockPanel Background="White">
-            <TextBlock DockPanel.Dock="Top" Text="Output" Margin="15,15,15,0" Style="{StaticResource Titles}"/>
+            <DockPanel DockPanel.Dock="Top">
+                <TextBlock DockPanel.Dock="Left" Margin="15,15,15,0" Text="Output" Style="{StaticResource Titles}"/>
+                <CheckBox HorizontalAlignment="Right" Margin="15,16,15,0" IsChecked="{Binding HasNewLinesInBetween}">
+                    <TextBlock DockPanel.Dock="Top" Text="Mit Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
+                </CheckBox>
+            </DockPanel>
             <TextBox x:Name="ResultView" TextWrapping="Wrap" Text="{Binding ResultText}" Margin="15,0,15,15" IsReadOnly="True" IsReadOnlyCaretVisible="True" BorderThickness="0"/>
         </DockPanel>
     </ContentControl>

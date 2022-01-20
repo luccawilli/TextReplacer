@@ -46,7 +46,7 @@
             </ContentControl>
 
             <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
-            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"/>
+            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}" HasNewLinesInBetween="{Binding HasNewLinesInBetween}"/>
         </Grid>
     </Border>
 </UserControl>

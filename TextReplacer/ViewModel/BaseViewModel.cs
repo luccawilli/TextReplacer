@@ -59,12 +59,21 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _statusText, value);
     }
 
+    private Boolean? _hasNewLinesInBetween = false;
+    public Boolean? HasNewLinesInBetween {
+      get => _hasNewLinesInBetween;
+      set => SetProperty(ref _hasNewLinesInBetween, value);
+    }
 
     #region Methods
 
     public virtual void Start() { }
 
-    public virtual void Clear() { }
+    public virtual void Clear() {
+      ResultText = null;
+      InfoMessages.Clear();
+      SetStatusToStandard();
+    }
 
     protected void SetStatusToStandard() {
       StatusForeground = Brushes.Black;

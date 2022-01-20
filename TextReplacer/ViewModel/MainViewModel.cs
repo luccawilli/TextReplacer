@@ -4,7 +4,7 @@ namespace TextReplacer.ViewModel {
   public class MainViewModel : BindableBase {
 
     private TextReplacerViewModel _textReplacerViewModel;
-    public TextReplacerViewModel TextReplacerViewModel { 
+    public TextReplacerViewModel TextReplacerViewModel {
       get => _textReplacerViewModel;
       set => SetProperty(ref _textReplacerViewModel, value);
     }

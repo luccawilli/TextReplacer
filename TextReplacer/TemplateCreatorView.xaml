@@ -8,7 +8,7 @@
              xmlns:designData="clr-namespace:TextReplacer.ViewModel"
              d:DataContext="{d:DesignInstance {x:Type designData:TemplateCreatorViewModel}}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -39,18 +39,24 @@
                     <t:TemplateTextBox Grid.Column="0" TemplateText="{Binding TemplateText}"/>
                     <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     <DockPanel Grid.Column="2" LastChildFill="True">
-                        <TextBlock DockPanel.Dock="Top" Text="Indikator" Style="{StaticResource Titles}"/>
-                        <TextBox DockPanel.Dock="Top" x:Name="ReplacementCharacters" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding IndicatorText}" Height="25" />
+                        <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
+                        <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitCharsForLabels}" Height="25" Width="30" AcceptsReturn="False"/>
+
+                        
+                        <TextBlock DockPanel.Dock="Top" Text="Variablen-Trennzeichen" Style="{StaticResource Titles}"/>
+                        <TextBox DockPanel.Dock="Top" x:Name="SplitChar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitChar}" Height="25" Width="30"/>
+                        
+                        <TextBlock DockPanel.Dock="Top" Text="Variablen" Style="{StaticResource Titles}"/>
+                        <TextBox DockPanel.Dock="Top" x:Name="Variables" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding VariableText}" Height="25"/>
 
                         <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" Style="{StaticResource Titles}"/>
-                        <DataGrid x:Name="ToInsertLabels" Margin="10,5,10,10" ItemsSource="{Binding ToInsertLabels}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="True">
-                        </DataGrid>
+                        <TextBox x:Name="ToInsertLabels" Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ToInsertLabels}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </DockPanel>
                 </Grid>
             </ContentControl>
 
             <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
-            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"/>
+            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}" HasNewLinesInBetween="{Binding HasNewLinesInBetween}"/>
         </Grid>
     </Border>
 </UserControl>

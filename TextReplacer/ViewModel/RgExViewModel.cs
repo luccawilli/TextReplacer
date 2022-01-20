@@ -5,9 +5,11 @@ using System.Text.RegularExpressions;
 namespace TextReplacer.ViewModel {
   public class RgExViewModel : BaseViewModel {
 
+    private String _infoTemplateText = "Info: Mit dem Regex-Pattern kann Text extrahiert werden";
+
     public RgExViewModel() {
       SetStatusToStandard();
-      AddInfo("Info: Mit dem Regex-Pattern kann Text extrahiert werden");
+      AddInfo(_infoTemplateText);
     }
 
     private String _regexPattern;
@@ -28,8 +30,15 @@ namespace TextReplacer.ViewModel {
       StringBuilder sb = new StringBuilder();
       foreach (Match match in matches) {
         sb.AppendLine(match.Value);
+        if (HasNewLinesInBetween.HasValue && HasNewLinesInBetween.Value) {
+          sb.AppendLine();
+        }
       }
       ResultText = sb.ToString();
+    }
+    public override void Clear() {
+      base.Clear();
+      AddInfo(_infoTemplateText);
     }
   }
 }

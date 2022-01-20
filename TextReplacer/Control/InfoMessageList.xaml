@@ -20,7 +20,7 @@
                 <Border BorderThickness="1" CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,5,10,5" Background="{Binding Brush}" Padding="8,5,8,5" Height="30">
                     <DockPanel>
                         <TextBlock Text="{Binding Message}" Foreground="White" TextWrapping="Wrap" />
-                        <Button Click="HandleDeleteMessageClick" HorizontalAlignment="Right" Style="{StaticResource TransparentButton}">
+                        <Button Click="HandleDeleteMessageClick" HorizontalAlignment="Right" Style="{StaticResource TransparentButton}" Margin="5,0,0,0">
                             <Image Source="{StaticResource DeleteDrawingImage}" Width="10" />
                         </Button>
                     </DockPanel>

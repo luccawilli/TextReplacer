@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace TextReplacer {
   /// <summary>
@@ -20,6 +7,11 @@ namespace TextReplacer {
   public partial class TemplateCreatorView : UserControl {
     public TemplateCreatorView() {
       InitializeComponent();
+
+      Variables.ToolTip = @"Hier können mehrere Variablen angegeben werden,
+Die Reihenfolge muss dabei gleich wie im Vorgabetext gehalten werden,
+Bitte Trennzeichen beachten.";
+      SplitChar.ToolTip = @"Beinhaltet das Trennzeichen, zum Trennen von Variablen und Labels";
     }
   }
 }

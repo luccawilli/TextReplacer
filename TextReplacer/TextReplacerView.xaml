@@ -42,21 +42,17 @@
                         <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
                         <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitCharsForLabels}" Height="25" Width="30" AcceptsReturn="False"/>
 
-                        <CheckBox DockPanel.Dock="Top" x:Name="HasNewLinesInBetween" Margin="10,5,10,5" IsChecked="{Binding HasNewLinesInBetween}">
-                            <TextBlock DockPanel.Dock="Top" Text="Mit Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
-                        </CheckBox>
-
                         <TextBlock DockPanel.Dock="Top" Text="Ersetzungszeichen" Style="{StaticResource Titles}"/>
                         <TextBox DockPanel.Dock="Top" x:Name="ReplacementCharacters" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding ReplacementChars}" Height="25"  />
 
                         <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" Style="{StaticResource Titles}"/>
-                        <TextBox x:Name="ToInsertLabels"  Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ToInsertLabels}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <TextBox x:Name="ToInsertLabels" Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ToInsertLabels}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </DockPanel>
                 </Grid>
             </ContentControl>
 
             <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
-            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"/>
+            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}" HasNewLinesInBetween="{Binding HasNewLinesInBetween}"/>
         </Grid>
     </Border>
 </UserControl>
