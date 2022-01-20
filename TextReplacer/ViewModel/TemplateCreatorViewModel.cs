@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TextReplacer.ViewModel {
   public class TemplateCreatorViewModel : BaseViewModel {
@@ -60,7 +61,7 @@ namespace TextReplacer.ViewModel {
       foreach (String variableValue in variableValues) {
         String template = TemplateText;
         String[] values = variableValue.Split(splitChar, StringSplitOptions.None);
-
+        Dictionary<String, String> replacements = new Dictionary<String, String>();
         for (Int32 i = 0; i < variables.Length; i++) {
           if (values.Length < i) {
             continue;
@@ -68,10 +69,14 @@ namespace TextReplacer.ViewModel {
 
           String variable = variables[i];
           String value = values[i];
-          template = template.Replace("*" + variable, Char.ToUpper(value[0]) + value.Substring(1));
-          template = template.Replace("_" + variable, Char.ToLower(value[0]) + value.Substring(1));
-          template = template.Replace(variable, value);
+          replacements.Add(variable, value);
+          replacements.Add("*" + variable, Char.ToUpper(value[0]) + value.Substring(1));
+          replacements.Add("_" + variable, Char.ToLower(value[0]) + value.Substring(1));
         }
+
+        var regex = new Regex(String.Join("|", replacements.Keys.Select(k => Regex.Escape(k))));
+        template = regex.Replace(template, m => replacements[m.Value]);
+
         sb.AppendLine(template);
         if (HasNewLinesInBetween.HasValue && HasNewLinesInBetween.Value) {
           sb.AppendLine();
