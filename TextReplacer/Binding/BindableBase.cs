@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TextReplacer.Command {
+namespace TextReplacer.Binding {
   //
   // Summary:
   //     Implementation of System.ComponentModel.INotifyPropertyChanged to simplify models.
@@ -107,7 +103,6 @@ namespace TextReplacer.Command {
     //   propertyName:
     //     Name of the property used to notify listeners. This value is optional and can
     //     be provided automatically when invoked from compilers that support System.Runtime.CompilerServices.CallerMemberNameAttribute.
-    [Obsolete("Please use the new RaisePropertyChanged method. This method will be removed to comply wth .NET coding standards. If you are overriding this method, you should overide the OnPropertyChanged(PropertyChangedEventArgs args) signature instead.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
       OnPropertyChanged(new PropertyChangedEventArgs(propertyName));

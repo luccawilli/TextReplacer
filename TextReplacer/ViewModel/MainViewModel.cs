@@ -1,4 +1,4 @@
-﻿using TextReplacer.Command;
+﻿using TextReplacer.Binding;
 
 namespace TextReplacer.ViewModel {
   public class MainViewModel : BindableBase {

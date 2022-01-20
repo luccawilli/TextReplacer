@@ -59,8 +59,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\BindableBase.cs" />
-    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Binding\BindableBase.cs" />
+    <Compile Include="Binding\RelayCommand.cs" />
     <Compile Include="Control\CustomTabHeader.xaml.cs">
       <DependentUpon>CustomTabHeader.xaml</DependentUpon>
     </Compile>
@@ -178,9 +178,7 @@
   <ItemGroup>
     <Resource Include="Replacer.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Binding\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

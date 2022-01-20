@@ -8,7 +8,7 @@ namespace TextReplacer.ViewModel {
 
     public TextReplacerViewModel() {
       SetStatusToStandard();
-      AddDefaultInfo();
+      AddInfo(InfoTemplateText);
     }
 
     public String InfoTemplateText => $"Info: {ReplacementChars} == 1:1 *{ReplacementChars} == Grosser Anfang _{ReplacementChars} == kleiner Anfang";
@@ -83,20 +83,10 @@ namespace TextReplacer.ViewModel {
     public override void Clear() {
       ResultText = null;
       InfoMessages.Clear();
-      AddDefaultInfo();
+      AddInfo(InfoTemplateText);
       SetStatusToStandard();
     }
 
-    private void SetStatusToInfo(String text) {
-      StatusForeground = Brushes.Red;
-      StatusText = text;
-
-      InfoMessages.Add(new InfoMessage() { Brush = Brushes.Red, Message = text });
-    }
-
-    private void AddDefaultInfo() {
-      InfoMessages.Add(new InfoMessage() { Brush = InfoMessage.TextReplacerBlue, Message = InfoTemplateText });
-    }
     #endregion
   }
 }

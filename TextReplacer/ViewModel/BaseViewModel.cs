@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Media;
-using TextReplacer.Command;
+using TextReplacer.Binding;
 
 namespace TextReplacer.ViewModel {
   public class BaseViewModel : BindableBase {
@@ -71,6 +71,16 @@ namespace TextReplacer.ViewModel {
       StatusText = "Status: Alles okay";
     }
 
+    protected void SetStatusToInfo(String text) {
+      StatusForeground = Brushes.Red;
+      StatusText = text;
+
+      InfoMessages.Add(new InfoMessage() { Brush = Brushes.Red, Message = text });
+    }
+
+    protected void AddInfo(String text) {
+      InfoMessages.Add(new InfoMessage() { Brush = InfoMessage.TextReplacerBlue, Message = text });
+    }
     #endregion
   }
 }

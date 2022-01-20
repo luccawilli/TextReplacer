@@ -4,9 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TextReplacer"
+             xmlns:t="clr-namespace:TextReplacer.Control"
+             xmlns:designData="clr-namespace:TextReplacer.ViewModel"
+             d:DataContext="{d:DesignInstance {x:Type designData:RgExViewModel}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles\StylesWithIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border CornerRadius="5" Padding="10,5,5,5" Background="{StaticResource MainBackgroundBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <t:InfoMessageList Grid.Row="0" InfoMessages="{Binding InfoMessages}" />
+            <t:StatusCommandToolbar Grid.Row="1" StatusText="{Binding StatusText}" StatusForeground="{Binding StatusForeground}" ClearCommand="{Binding ClearCommand}" StartCommand="{Binding StartCommand}"/>
+
+            <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <t:TemplateTextBox Grid.Column="0" TemplateText="{Binding TemplateText}"/>
+                    <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    <DockPanel Grid.Column="2" LastChildFill="True">
+                        <TextBlock DockPanel.Dock="Top" Text="Regex-Pattern" Style="{StaticResource Titles}"/>
+                        <TextBox DockPanel.Dock="Top" x:Name="RegexPattern" Text="{Binding RegexPattern}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Height="25"/>
+                    </DockPanel>
+                </Grid>
+            </ContentControl>
+
+            <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
+            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"/>
+        </Grid>
+    </Border>
 </UserControl>
