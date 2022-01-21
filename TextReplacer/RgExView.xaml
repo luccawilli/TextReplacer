@@ -27,7 +27,12 @@
             </Grid.RowDefinitions>
 
             <t:InfoMessageList Grid.Row="0" InfoMessages="{Binding InfoMessages}" />
-            <t:StatusCommandToolbar Grid.Row="1" StatusText="{Binding StatusText}" StatusForeground="{Binding StatusForeground}" ClearCommand="{Binding ClearCommand}" StartCommand="{Binding StartCommand}"/>
+            <t:StatusCommandToolbar Grid.Row="1" 
+                                    StatusText="{Binding StatusText}" 
+                                    StatusForeground="{Binding StatusForeground}" 
+                                    ClearCommand="{Binding ClearCommand}" 
+                                    StartCommand="{Binding StartCommand}"
+                                    CopyCommand="{Binding CopyCommand}"/>
 
             <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
                 <Grid Background="White">

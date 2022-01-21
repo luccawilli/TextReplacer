@@ -14,12 +14,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ListView Grid.Row="0" ItemsSource="{Binding InfoMessages, ElementName=infoList}" BorderThickness="0" Focusable="False" Background="WhiteSmoke">
+    <ListView Grid.Row="0" ItemsSource="{Binding InfoMessages, ElementName=infoList}" BorderThickness="0" Focusable="False" Background="Transparent">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <Border BorderThickness="1" CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,5,10,5" Background="{Binding Brush}" Padding="8,5,8,5" Height="30">
+                <Border BorderThickness="1" CornerRadius="4" Margin="10,5,10,5" Background="{Binding Brush}" Padding="8,5,8,5" Height="30">
                     <DockPanel>
-                        <TextBlock Text="{Binding Message}" Foreground="White" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding Message}" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Stretch"/>
                         <Button Click="HandleDeleteMessageClick" HorizontalAlignment="Right" Style="{StaticResource TransparentButton}" Margin="5,0,0,0">
                             <Image Source="{StaticResource DeleteDrawingImage}" Width="10" />
                         </Button>

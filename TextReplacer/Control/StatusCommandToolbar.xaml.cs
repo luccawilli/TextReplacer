@@ -42,6 +42,15 @@ namespace TextReplacer.Control {
       set { SetValue(ClearCommandProperty, value); }
     }
 
+    // The dependency property which will be accessible on the UserControl
+    public static readonly DependencyProperty CopyCommandProperty =
+        DependencyProperty.Register("CopyCommand", typeof(ICommand), typeof(StatusCommandToolbar), new UIPropertyMetadata());
+    public ICommand CopyCommand {
+      get { return (ICommand)GetValue(CopyCommandProperty); }
+      set { SetValue(CopyCommandProperty, value); }
+    }
+
+
     public StatusCommandToolbar() {
       InitializeComponent();
     }

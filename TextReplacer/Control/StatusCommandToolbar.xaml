@@ -22,6 +22,8 @@
         <DockPanel HorizontalAlignment="Right">
             <Button x:Name="ClearButton" Content="Clear" Margin="10,10,5,10" 
                     Command="{Binding ClearCommand}" Width="80" Style="{StaticResource SecondaryButton}"/>
+            <Button x:Name="CopyButton" Content="Copy" Margin="5,10,5,10" 
+                    Command="{Binding CopyCommand}" Width="80" Style="{StaticResource CopyButtonWithIcon}" />
             <Button x:Name="StartButton" Content="Start" Margin="5,10,10,10" 
                     Command="{Binding StartCommand}" Width="80" HorizontalAlignment="Right" Style="{StaticResource PrimaryButtonWithIcon}"/>
         </DockPanel>

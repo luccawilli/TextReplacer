@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using TextReplacer.Binding;
@@ -30,6 +31,18 @@ namespace TextReplacer.ViewModel {
           );
         }
         return _clearCommand;
+      }
+    }
+
+    private ICommand _copyCommand;
+    public ICommand CopyCommand {
+      get {
+        if (_copyCommand == null) {
+          _copyCommand = new RelayCommand(
+              param => Copy()
+          );
+        }
+        return _copyCommand;
       }
     }
 
@@ -74,6 +87,13 @@ namespace TextReplacer.ViewModel {
       InfoMessages.Clear();
       SetStatusToStandard();
     }
+    public virtual void Copy() {
+      if (String.IsNullOrEmpty(ResultText)) {
+        return;
+      }
+      Clipboard.SetText(ResultText);
+      SetStatusInfo("Status: Kopiert!");
+    }
 
     protected void SetStatusToStandard() {
       StatusForeground = Brushes.Black;
@@ -81,10 +101,18 @@ namespace TextReplacer.ViewModel {
     }
 
     protected void SetStatusToInfo(String text) {
-      StatusForeground = Brushes.Red;
-      StatusText = text;
+      SetStatusDanger(text);
 
       InfoMessages.Add(new InfoMessage() { Brush = Brushes.Red, Message = text });
+    }
+
+    private void SetStatusDanger(string text) {
+      StatusForeground = Brushes.Red;
+      StatusText = text;
+    }
+    private void SetStatusInfo(string text) {
+      StatusForeground = Brushes.Black;
+      StatusText = text;
     }
 
     protected void AddInfo(String text) {
