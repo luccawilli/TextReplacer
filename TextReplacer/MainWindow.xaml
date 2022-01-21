@@ -39,7 +39,7 @@
             </TabItem>
             <TabItem Style="{StaticResource PillsTabItem}">
                 <TabItem.Header>
-                    <t:CustomTabHeader ImageSource="{StaticResource RgExDrawingImage}" Text="RegExr" ImageWidth="16" />
+                    <t:CustomTabHeader ImageSource="{StaticResource RgExDrawingImage}" Text="RegExr"/>
                 </TabItem.Header>
                 <local:RgExView DataContext="{Binding RgExViewModel}" FontWeight="Normal" />
             </TabItem>
