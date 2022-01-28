@@ -18,6 +18,12 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _regexPattern, value);
     }
 
+    private Boolean? _hasNewLinesInBetween = false;
+    public Boolean? HasNewLinesInBetween {
+      get => _hasNewLinesInBetween;
+      set => SetProperty(ref _hasNewLinesInBetween, value);
+    }
+
     public override void Start() {
       if (String.IsNullOrEmpty(TemplateText)
        || String.IsNullOrEmpty(RegexPattern)) {

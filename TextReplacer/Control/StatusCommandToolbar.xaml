@@ -17,7 +17,8 @@
         <Border CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,0,10,0">
             <TextBlock Text="{Binding StatusText}" 
                        Foreground="{Binding StatusForeground}" 
-                       FontWeight="SemiBold" Margin="10" Height="20"/>
+                       FontWeight="SemiBold" Margin="10" Height="20"
+                       TextWrapping="Wrap"/>
         </Border>
         <DockPanel HorizontalAlignment="Right">
             <Button x:Name="ClearButton" Content="Clear" Margin="10,10,5,10" 

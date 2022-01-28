@@ -26,6 +26,15 @@
         </Style.Resources>
     </Style>
 
+    <Style TargetType="{x:Type RadioButton}">
+        <Setter Property="BorderThickness" Value="1" />
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="3" />
+            </Style>
+        </Style.Resources>
+    </Style>
+
     <Style TargetType="{x:Type TextBlock}" x:Key="Titles">
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="Foreground" Value="Gray"/>

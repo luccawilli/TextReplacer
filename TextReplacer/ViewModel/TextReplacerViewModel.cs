@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TextReplacer.ViewModel {
   public class TextReplacerViewModel : BaseViewModel {
@@ -38,13 +40,18 @@ namespace TextReplacer.ViewModel {
       String replacementCharacters = ReplacementChars;
       String seperator = SplitCharsForLabels;
       String toInsertLabelText = ToInsertLabels;
-      Boolean? addNewLines = HasNewLinesInBetween;
 
       if (String.IsNullOrEmpty(templateText)
         || String.IsNullOrEmpty(replacementCharacters)
         || String.IsNullOrEmpty(seperator)
         || String.IsNullOrEmpty(toInsertLabelText)) {
         SetStatusToInfo("Alle Felder müssen ausgefüllt sein");
+        return;
+      }
+
+      if (OutputType == Enum.OutputType.InFiles
+        && (String.IsNullOrEmpty(OutputFileName) || String.IsNullOrEmpty(OutputFolderPath))) {
+        SetStatusToInfo("Bitte Verzeichnis und Dateiname angeben");
         return;
       }
 
@@ -61,12 +68,14 @@ namespace TextReplacer.ViewModel {
       // Replace the text in the template with the label and add it to the output
       StringBuilder resultText = new StringBuilder();
       foreach (var label in splittedLabels) {
-        String text = templateText.Replace("*" + replacementCharacters, Char.ToUpper(label[0]) + label.Substring(1));
-        text = text.Replace("_" + replacementCharacters, Char.ToLower(label[0]) + label.Substring(1));
-        resultText.AppendLine(text.Replace(replacementCharacters, label));
-        if (addNewLines.HasValue && addNewLines.Value) {
-          resultText.AppendLine();
-        }
+        StringBuilder sb = new StringBuilder();
+
+        Dictionary<String, String> replacements = GetReplacements(new string[] { replacementCharacters }, new string[] { label });
+        Regex regex = GetReplacerRegex(replacements);
+        String text = GetReplacedText(templateText, replacements, regex);
+        sb.AppendLine(text);
+
+        resultText.Append(ApplyOutputSettings(sb, replacements, regex, OutputFileName));
       }
 
       ResultText = resultText.ToString();

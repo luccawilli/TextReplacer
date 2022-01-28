@@ -20,7 +20,7 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _splitCharsForLabels, value);
     }
 
-    private String _variableText = "77,88,99";
+    private String _variableText = "1,2,3";
     public String VariableText {
       get => _variableText;
       set => SetProperty(ref _variableText, value);
@@ -46,6 +46,12 @@ namespace TextReplacer.ViewModel {
         return;
       }
 
+      if (OutputType == Enum.OutputType.InFiles
+        && (String.IsNullOrEmpty(OutputFileName) || String.IsNullOrEmpty(OutputFolderPath))) {
+        SetStatusToInfo("Bitte Verzeichnis und Dateiname angeben");
+        return;
+      }
+
       String[] splitChar = new String[] { SplitChar };
       String[] variables = VariableText.Split(splitChar, StringSplitOptions.None)
         .Distinct()
@@ -57,34 +63,24 @@ namespace TextReplacer.ViewModel {
         seperator = Environment.NewLine;
       }
       List<String> variableValues = ToInsertLabels.Split(new String[] { seperator }, StringSplitOptions.None).ToList();
-      StringBuilder sb = new StringBuilder();
+      StringBuilder resultSB = new StringBuilder();
       foreach (String variableValue in variableValues) {
+        StringBuilder sb = new StringBuilder();
         String template = TemplateText;
         String[] values = variableValue.Split(splitChar, StringSplitOptions.None);
-        Dictionary<String, String> replacements = new Dictionary<String, String>();
-        for (Int32 i = 0; i < variables.Length; i++) {
-          if (values.Length < i) {
-            continue;
-          }
+        Dictionary<String, String> replacements = GetReplacements(variables, values);
 
-          String variable = variables[i];
-          String value = values[i];
-          replacements.Add(variable, value);
-          replacements.Add("*" + variable, Char.ToUpper(value[0]) + value.Substring(1));
-          replacements.Add("_" + variable, Char.ToLower(value[0]) + value.Substring(1));
-        }
-
-        var regex = new Regex(String.Join("|", replacements.Keys.Select(k => Regex.Escape(k))));
-        template = regex.Replace(template, m => replacements[m.Value]);
+        Regex regex = GetReplacerRegex(replacements);
+        template = GetReplacedText(template, replacements, regex);
 
         sb.AppendLine(template);
-        if (HasNewLinesInBetween.HasValue && HasNewLinesInBetween.Value) {
-          sb.AppendLine();
-        }
+
+        resultSB.Append(ApplyOutputSettings(sb, replacements, regex, OutputFileName));
       }
 
-      ResultText = sb.ToString();
+      ResultText = resultSB.ToString();
     }
+
 
     public override void Clear() {
       base.Clear();

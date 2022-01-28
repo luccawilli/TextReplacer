@@ -16,14 +16,6 @@ namespace TextReplacer.Control {
       set { SetValue(ResultTextProperty, value); }
     }
 
-    // The dependency property which will be accessible on the UserControl
-    public static readonly DependencyProperty HasNewLinesInBetweenProperty =
-        DependencyProperty.Register("HasNewLinesInBetween", typeof(Boolean?), typeof(ResultTextBox), new UIPropertyMetadata(false));
-    public Boolean? HasNewLinesInBetween {
-      get { return (Boolean?)GetValue(HasNewLinesInBetweenProperty); }
-      set { SetValue(HasNewLinesInBetweenProperty, value); }
-    }
-
     public ResultTextBox() {
       InitializeComponent();
     }

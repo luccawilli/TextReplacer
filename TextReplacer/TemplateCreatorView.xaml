@@ -40,6 +40,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="10" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <t:TemplateTextBox Grid.Column="0" TemplateText="{Binding TemplateText}"/>
                     <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
@@ -57,11 +59,17 @@
                         <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" Style="{StaticResource Titles}"/>
                         <TextBox x:Name="ToInsertLabels" Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ToInsertLabels}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </DockPanel>
+                    <GridSplitter Grid.Column="3" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    <t:ResultSettingPanel Grid.Column="4" 
+                                          OutputType="{Binding OutputType}" 
+                                          OutputFolderPath="{Binding OutputFolderPath}"
+                                          OutputFileName="{Binding OutputFileName}"
+                                          OutputOverrideExistingFiles="{Binding OutputOverrideExistingFiles}"/>
                 </Grid>
             </ContentControl>
 
             <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
-            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}" HasNewLinesInBetween="{Binding HasNewLinesInBetween}"/>
+            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"/>
         </Grid>
     </Border>
 </UserControl>

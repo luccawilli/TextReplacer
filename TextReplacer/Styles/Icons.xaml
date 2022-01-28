@@ -59,6 +59,30 @@
         </DrawingImage.Drawing>
     </DrawingImage>
 
+    <DrawingImage x:Key="FolderDrawingImage">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V512 H512 V0 H0 Z">
+                <DrawingGroup.Transform>
+                    <TranslateTransform X="0.5" Y="0" />
+                </DrawingGroup.Transform>
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Geometry="F0 M512,512z M0,0z M-0.5,365.5C-0.5,270.5 -0.5,175.5 -0.5,80.5 3.39862,68.7719 11.3986,61.2719 23.5,58 69.1667,57.3333 114.833,57.3333 160.5,58 166.388,59.5627 171.554,62.396 176,66.5 188.167,83.3333 200.333,100.167 212.5,117 278.544,117.014 344.544,117.68 410.5,119 420.09,122.923 426.59,129.756 430,139.5 431.391,156.128 431.891,172.795 431.5,189.5 322.499,189.333 213.499,189.5 104.5,190 92.1747,192.243 82.3414,198.41 75,208.5 49.786,260.925 24.6193,313.258 -0.5,365.5z">
+                        <GeometryDrawing.Brush>
+                            <SolidColorBrush Color="#FF000000" Opacity="0.991" />
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup>
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Geometry="F0 M512,512z M0,0z M511.5,250.5C511.5,256.167 511.5,261.833 511.5,267.5 484.262,323.978 456.428,380.311 428,436.5 419.723,448.557 408.223,454.723 393.5,455 272.833,455.667 152.167,455.667 31.5,455 15.8121,453.79 5.14541,445.956 -0.5,431.5 -0.5,430.833 -0.5,430.167 -0.5,429.5 30.5585,365.713 61.3919,301.713 92,237.5 99.2915,226.549 109.458,220.049 122.5,218 240.167,217.333 357.833,217.333 475.5,218 494.054,221.727 506.054,232.56 511.5,250.5z">
+                        <GeometryDrawing.Brush>
+                            <SolidColorBrush Color="#FF000000" Opacity="0.992" />
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
     <DrawingImage x:Key="TextReplacerDrawingImage">
         <DrawingImage.Drawing>
             <DrawingGroup ClipGeometry="M0,0 V512 H512 V0 H0 Z">

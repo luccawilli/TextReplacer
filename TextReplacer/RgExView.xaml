@@ -46,12 +46,17 @@
                     <DockPanel Grid.Column="2" LastChildFill="True">
                         <TextBlock DockPanel.Dock="Top" Text="Regex-Pattern" Style="{StaticResource Titles}"/>
                         <TextBox DockPanel.Dock="Top" x:Name="RegexPattern" Text="{Binding RegexPattern}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Height="25"/>
+
+
+                        <CheckBox DockPanel.Dock="Top" Margin="10,5,10,10" IsChecked="{Binding HasNewLinesInBetween}">
+                            <TextBlock DockPanel.Dock="Top" Text="Mit Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
+                        </CheckBox>
                     </DockPanel>
                 </Grid>
             </ContentControl>
 
             <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
-            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}" HasNewLinesInBetween="{Binding HasNewLinesInBetween}"/>
+            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"/>
         </Grid>
     </Border>
 </UserControl>
