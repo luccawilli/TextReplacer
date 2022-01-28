@@ -19,7 +19,7 @@ namespace TextReplacer.Control {
 
     // The dependency property which will be accessible on the UserControl
     public static readonly DependencyProperty OutputFolderPathProperty =
-        DependencyProperty.Register("OutputFolderPath", typeof(String), typeof(ResultSettingPanel), new UIPropertyMetadata());
+        DependencyProperty.Register("OutputFolderPath", typeof(String), typeof(ResultSettingPanel));
     public String OutputFolderPath {
       get { return (String)GetValue(OutputFolderPathProperty); }
       set { SetValue(OutputFolderPathProperty, value); }
@@ -27,7 +27,7 @@ namespace TextReplacer.Control {
 
     // The dependency property which will be accessible on the UserControl
     public static readonly DependencyProperty OutputFileNameProperty =
-        DependencyProperty.Register("OutputFileName", typeof(String), typeof(ResultSettingPanel), new UIPropertyMetadata());
+        DependencyProperty.Register("OutputFileName", typeof(String), typeof(ResultSettingPanel));
     public String OutputFileName {
       get { return (String)GetValue(OutputFileNameProperty); }
       set { SetValue(OutputFileNameProperty, value); }

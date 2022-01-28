@@ -4,7 +4,9 @@ using System.Windows.Data;
 namespace TextReplacer.Converter {
   public class EnumBooleanConverter : IValueConverter {
 
-    public object Convert(Object value, Type targetType, Object parameter, System.Globalization.CultureInfo culture) {
+    public Object DefaultValue { get; set; }
+
+    public Object Convert(Object value, Type targetType, Object parameter, System.Globalization.CultureInfo culture) {
       if (value.Equals(parameter)) {
         return true;
       }
@@ -16,7 +18,7 @@ namespace TextReplacer.Converter {
       if (boolValue.HasValue && boolValue.Value) {
         return parameter;
       }
-      return null;
+      return DefaultValue;
     }
   }
 }

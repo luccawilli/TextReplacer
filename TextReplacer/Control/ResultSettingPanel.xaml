@@ -15,21 +15,21 @@
                 <ResourceDictionary Source="..\Styles\StylesWithIcons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <converter:EnumBooleanConverter x:Key="enumBooleanConverter" />
+            <converter:EnumBooleanConverter x:Key="enumBooleanConverter" DefaultValue="{x:Static enum:OutputType.Normal}" />
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <TextBlock DockPanel.Dock="Top" Text="Output" Style="{StaticResource Titles}"/>
         <RadioButton DockPanel.Dock="Top" Margin="15,16,15,0" GroupName="Output" 
-                     IsChecked="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.Normal}}">
+                     IsChecked="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.Normal}, ElementName=resultSetting}">
             <TextBlock Text="Ohne Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
         </RadioButton>
         <RadioButton DockPanel.Dock="Top" Margin="15,16,15,0" GroupName="Output"
-                     IsChecked="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.WithNewLines}}">
+                     IsChecked="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.WithNewLines}, ElementName=resultSetting}">
             <TextBlock Text="Mit Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
         </RadioButton>
         <RadioButton DockPanel.Dock="Top" Margin="15,16,15,0" GroupName="Output"
-                     IsChecked="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.InFiles}}">
+                     IsChecked="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.InFiles}, ElementName=resultSetting}">
             <TextBlock Text="In Dateien" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
         </RadioButton>
 
@@ -39,17 +39,17 @@
                 <Image Source="{StaticResource FolderDrawingImage}" Width="15"></Image>
             </Button>
             <TextBox DockPanel.Dock="Left" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25" 
-                 IsEnabled="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.InFiles}}"
+                 IsEnabled="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.InFiles}, ElementName=resultSetting}"
                  Text="{Binding OutputFolderPath, Mode=TwoWay, ElementName=resultSetting}" ToolTip="{Binding OutputFolderPath, ElementName=resultSetting}"/>
         </DockPanel>
 
         <TextBlock DockPanel.Dock="Top" Text="Dateiname" Style="{StaticResource Titles}"/>
         <TextBox DockPanel.Dock="Top" Margin="10,5,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25" 
-                 IsEnabled="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.InFiles}}"
+                 IsEnabled="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.InFiles}, ElementName=resultSetting}"
                  Text="{Binding OutputFileName, ElementName=resultSetting}" />
 
         <CheckBox DockPanel.Dock="Top" Margin="10,5,10,10" IsChecked="{Binding OutputOverrideExistingFiles, ElementName=resultSetting}"
-                 IsEnabled="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.InFiles}}">
+                 IsEnabled="{Binding OutputType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static enum:OutputType.InFiles}, ElementName=resultSetting}">
             <TextBlock DockPanel.Dock="Top" Text="Bestehende Dateien überschreiben" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
         </CheckBox>
     </DockPanel>

@@ -133,9 +133,9 @@ namespace TextReplacer.ViewModel {
     }
 
     /// <summary>Applies the output settings to the given values.</summary>
-    /// <param name="sb"></param>
-    /// <param name="filePath"></param>
-    /// <returns></returns>
+    /// <param name="sb">The text to write down.</param>
+    /// <param name="filePath">The path for file.</param>
+    /// <returns>The string to add in the result.</returns>
     public String ApplyOutputSettings(StringBuilder sb, Dictionary<String, String> replacements, Regex regex, String fileName) {
       switch (OutputType) {
         case OutputType.WithNewLines:
@@ -147,7 +147,9 @@ namespace TextReplacer.ViewModel {
 
           Boolean fileCreated = CreateFile(OutputOverrideExistingFiles ?? false, filePath, sb.ToString());
           String prefix = fileCreated ? "Erstellt:" : "Nicht erstellt:";
-          return prefix + " " + filePath;
+          sb.Clear();
+          sb.AppendLine(prefix + " " + filePath);
+          return sb.ToString();
         default:
           return sb.ToString();
       }
