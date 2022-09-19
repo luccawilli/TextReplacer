@@ -1,4 +1,6 @@
-﻿using TextReplacer.Binding;
+﻿using System.Collections.Generic;
+using System.Windows;
+using TextReplacer.Binding;
 
 namespace TextReplacer.ViewModel {
   public class MainViewModel : BindableBase {
@@ -21,12 +23,17 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _templateCreatorViewModel, value);
     }
 
+    private Visibility _textVisibility = Visibility.Visible;
+    public Visibility TextVisibility {
+      get => _textVisibility;
+      set => SetProperty(ref _textVisibility, value);
+    }
+
     /// <summary>Creates a new instance</summary>
     public MainViewModel() {
       TextReplacerViewModel = new TextReplacerViewModel();
       RgExViewModel = new RgExViewModel();
       TemplateCreatorViewModel = new TemplateCreatorViewModel();
     }
-
   }
 }

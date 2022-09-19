@@ -15,34 +15,32 @@
         UseLayoutRounding="True"
         x:Name="MyControl"
         d:DataContext="{d:DesignInstance {x:Type designData:MainViewModel}}"
-        Title="Text Replacer" Height="850" MinHeight="650" Width="760" MinWidth="710" Icon="Replacer.ico">
+        Title="Text Replacer" Height="850" MinHeight="650" Width="850" MinWidth="710" Icon="Replacer.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles\StylesWithIcons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Window.Resources>
-    <Grid>
-        <TabControl TabStripPlacement="Left" BorderThickness="0" Background="White">
-            <TabItem Style="{StaticResource PillsTabItem}">
-                <TabItem.Header>
-                    <t:CustomTabHeader ImageSource="{StaticResource TextReplacerDrawingImage}" Text="TextReplacer" />
-                </TabItem.Header>
-                <local:TextReplacerView DataContext="{Binding TextReplacerViewModel}" FontWeight="Normal" />                
-            </TabItem>
-            <TabItem Style="{StaticResource PillsTabItem}">
-                <TabItem.Header>
-                    <t:CustomTabHeader ImageSource="{StaticResource TemplateCreatorDrawingImage}" Text="TemplateCreator" />
-                </TabItem.Header>
-                <local:TemplateCreatorView DataContext="{Binding TemplateCreatorViewModel}" FontWeight="Normal" />
-            </TabItem>
-            <TabItem Style="{StaticResource PillsTabItem}">
-                <TabItem.Header>
-                    <t:CustomTabHeader ImageSource="{StaticResource RgExDrawingImage}" Text="RegExr"/>
-                </TabItem.Header>
-                <local:RgExView DataContext="{Binding RgExViewModel}" FontWeight="Normal" />
-            </TabItem>
-        </TabControl>
-    </Grid>
+    </Window.Resources>    
+    <TabControl x:Name="tabControl" TabStripPlacement="Left" BorderThickness="0" Background="White">
+        <TabItem Style="{StaticResource PillsTabItem}">
+            <TabItem.Header>
+                <t:CustomTabHeader ImageSource="{StaticResource TextReplacerDrawingImage}" Text="TextReplacer" TextVisibility="{Binding TextVisibility}" />
+            </TabItem.Header>
+            <local:TextReplacerView DataContext="{Binding TextReplacerViewModel}" FontWeight="Normal" />
+        </TabItem>
+        <TabItem Style="{StaticResource PillsTabItem}">
+            <TabItem.Header>
+                <t:CustomTabHeader ImageSource="{StaticResource TemplateCreatorDrawingImage}" Text="TemplateCreator" TextVisibility="{Binding TextVisibility}" />
+            </TabItem.Header>
+            <local:TemplateCreatorView DataContext="{Binding TemplateCreatorViewModel}" FontWeight="Normal" />
+        </TabItem>
+        <TabItem Style="{StaticResource PillsTabItem}">
+            <TabItem.Header>
+                <t:CustomTabHeader ImageSource="{StaticResource RgExDrawingImage}" Text="RegExr" TextVisibility="{Binding TextVisibility}"/>
+            </TabItem.Header>
+            <local:RgExView DataContext="{Binding RgExViewModel}" FontWeight="Normal" />
+        </TabItem>
+    </TabControl>
 </Window>

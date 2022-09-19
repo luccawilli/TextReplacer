@@ -8,7 +8,6 @@ namespace TextReplacer.ViewModel {
   public class TextReplacerViewModel : BaseViewModel {
 
     public TextReplacerViewModel() {
-      SetStatusToStandard();
       AddInfo(InfoTemplateText);
     }
 
@@ -79,7 +78,14 @@ namespace TextReplacer.ViewModel {
       }
 
       ResultText = resultText.ToString();
-      SetStatusToStandard();
+    }
+
+    public override void Save() {
+      var template = new TemplateDto() {
+        Name = "New Template",
+        DisplayText = TemplateText,
+      };
+      Templates.Add(template);
     }
 
     public override void Clear() {

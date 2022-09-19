@@ -10,7 +10,6 @@ namespace TextReplacer.ViewModel {
     private String _infoTemplateText = "Info: Variable == 1:1 *Variable == Grosser Anfang _Variable == kleiner Anfang";
 
     public TemplateCreatorViewModel() {
-      SetStatusToStandard();
       AddInfo(_infoTemplateText);
     }
 
@@ -81,7 +80,13 @@ namespace TextReplacer.ViewModel {
       ResultText = resultSB.ToString();
     }
 
-
+    public override void Save() {
+      var template = new TemplateDto() {
+        Name = "New Template",
+        DisplayText = TemplateText,
+      };
+      Templates.Add(template);
+    }
     public override void Clear() {
       base.Clear();
       AddInfo(_infoTemplateText);

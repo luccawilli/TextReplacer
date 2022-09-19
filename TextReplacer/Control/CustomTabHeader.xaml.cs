@@ -23,14 +23,12 @@ namespace TextReplacer.Control {
       set { SetValue(ImageSourceProperty, value); }
     }
 
-
-    public static readonly DependencyProperty ImageWidthProperty =
-        DependencyProperty.Register("ImageWidth", typeof(Int32), typeof(CustomTabHeader), new UIPropertyMetadata(20));
-    public Int32 ImageWidth {
-      get { return (Int32)GetValue(ImageWidthProperty); }
-      set { SetValue(ImageWidthProperty, value); }
+    public static readonly DependencyProperty TextVisibilityProperty =
+        DependencyProperty.Register("TextVisibility", typeof(Visibility), typeof(CustomTabHeader), new UIPropertyMetadata(Visibility.Visible));
+    public Visibility TextVisibility {
+      get { return (Visibility)GetValue(TextVisibilityProperty); }
+      set { SetValue(TextVisibilityProperty, value); }
     }
-
     public CustomTabHeader() {
       InitializeComponent();
     }

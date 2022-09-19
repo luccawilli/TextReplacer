@@ -40,6 +40,18 @@ namespace TextReplacer.ViewModel {
       }
     }
 
+    private ICommand _saveCommand;
+    public ICommand SaveCommand {
+      get {
+        if (_saveCommand == null) {
+          _saveCommand = new RelayCommand(
+              param => Save()
+          );
+        }
+        return _saveCommand;
+      }
+    }
+
     private ICommand _copyCommand;
     public ICommand CopyCommand {
       get {
@@ -66,18 +78,6 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _resultText, value);
     }
 
-    private Brush _statusForeground;
-    public Brush StatusForeground {
-      get => _statusForeground;
-      set => SetProperty(ref _statusForeground, value);
-    }
-
-    private String _statusText;
-    public String StatusText {
-      get => _statusText;
-      set => SetProperty(ref _statusText, value);
-    }
-
     private OutputType _outputType = OutputType.Normal;
     public OutputType OutputType {
       get => _outputType;
@@ -102,21 +102,29 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _outputOverrideExistingFiles, value);
     }
 
+    private ObservableCollection<TemplateDto> _templates = new ObservableCollection<TemplateDto>();
+    public ObservableCollection<TemplateDto> Templates {
+      get => _templates;
+      set => SetProperty(ref _templates, value);
+    }
+
+
     #region Methods
 
     public virtual void Start() { }
 
+    public virtual void Save() { }
+
     public virtual void Clear() {
       ResultText = null;
       InfoMessages.Clear();
-      SetStatusToStandard();
     }
+
     public virtual void Copy() {
       if (String.IsNullOrEmpty(ResultText)) {
         return;
       }
       Clipboard.SetText(ResultText);
-      SetStatusInfo("Status: Kopiert!");
     }
 
     public Boolean CreateFile(Boolean overrideExistingFiles, String fileName, String content) {
@@ -193,24 +201,8 @@ namespace TextReplacer.ViewModel {
       return replacements;
     }
 
-    protected void SetStatusToStandard() {
-      StatusForeground = Brushes.Black;
-      StatusText = "Status: Alles okay";
-    }
-
     protected void SetStatusToInfo(String text) {
-      SetStatusDanger(text);
-
       InfoMessages.Add(new InfoMessage() { Brush = Brushes.Red, Message = text });
-    }
-
-    private void SetStatusDanger(string text) {
-      StatusForeground = Brushes.Red;
-      StatusText = text;
-    }
-    private void SetStatusInfo(string text) {
-      StatusForeground = Brushes.Black;
-      StatusText = text;
     }
 
     protected void AddInfo(String text) {
