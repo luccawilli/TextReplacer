@@ -17,10 +17,22 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _regexPattern, value);
     }
 
+    private String _charactersToRemove;
+    public String CharactersToRemove {
+      get => _charactersToRemove;
+      set => SetProperty(ref _charactersToRemove, value);
+    }
+
     private Boolean? _hasNewLinesInBetween = false;
     public Boolean? HasNewLinesInBetween {
       get => _hasNewLinesInBetween;
       set => SetProperty(ref _hasNewLinesInBetween, value);
+    }
+
+    private Boolean? _removeWhitespaces = false;
+    public Boolean? RemoveWhitespaces {
+      get => _removeWhitespaces;
+      set => SetProperty(ref _removeWhitespaces, value);
     }
 
     public override void Start() {
@@ -34,7 +46,16 @@ namespace TextReplacer.ViewModel {
       MatchCollection matches = regex.Matches(TemplateText);
       StringBuilder sb = new StringBuilder();
       foreach (Match match in matches) {
-        sb.AppendLine(match.Value);
+        String matchValue = match.Value;
+        if (RemoveWhitespaces ?? false) {
+          matchValue = matchValue?.Replace(" ", "");
+        }
+        if (!String.IsNullOrEmpty(CharactersToRemove)) {
+          foreach (Char c in CharactersToRemove) {
+            matchValue = matchValue?.Replace(c+"", "");
+          }
+        }
+        sb.AppendLine(matchValue);
         if (HasNewLinesInBetween.HasValue && HasNewLinesInBetween.Value) {
           sb.AppendLine();
         }

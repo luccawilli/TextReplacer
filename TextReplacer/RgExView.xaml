@@ -52,6 +52,12 @@
                             <TextBlock DockPanel.Dock="Top" Text="Regex-Pattern" Style="{StaticResource Titles}"/>
                             <TextBox DockPanel.Dock="Top" x:Name="RegexPattern" Text="{Binding RegexPattern}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Height="25"/>
 
+                            <TextBlock DockPanel.Dock="Top" Text="Zu entfernende Zeichen" Style="{StaticResource Titles}"/>
+                            <TextBox DockPanel.Dock="Top" x:Name="CharactersToRemove" Text="{Binding CharactersToRemove}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Height="25"/>
+                            
+                            <CheckBox DockPanel.Dock="Top" Margin="10,5,10,10" IsChecked="{Binding RemoveWhitespaces}">
+                                <TextBlock DockPanel.Dock="Top" Text="Leerzeichen entfernen" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
+                            </CheckBox>
 
                             <CheckBox DockPanel.Dock="Top" Margin="10,5,10,10" IsChecked="{Binding HasNewLinesInBetween}">
                                 <TextBlock DockPanel.Dock="Top" Text="Mit Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
