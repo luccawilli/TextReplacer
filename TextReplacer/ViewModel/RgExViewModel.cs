@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -44,17 +46,13 @@ namespace TextReplacer.ViewModel {
 
       Regex regex = new Regex(RegexPattern);
       MatchCollection matches = regex.Matches(TemplateText);
+
+      Dictionary<String, String> charactersToRemoveDict = GetCharactersToRemoveDictionary();
+      Regex charactersToRemoveRegex = GetReplacerRegex(charactersToRemoveDict);
+
       StringBuilder sb = new StringBuilder();
       foreach (Match match in matches) {
-        String matchValue = match.Value;
-        if (RemoveWhitespaces ?? false) {
-          matchValue = matchValue?.Replace(" ", "");
-        }
-        if (!String.IsNullOrEmpty(CharactersToRemove)) {
-          foreach (Char c in CharactersToRemove) {
-            matchValue = matchValue?.Replace(c+"", "");
-          }
-        }
+        String matchValue = GetReplacedText(match.Value, charactersToRemoveDict, charactersToRemoveRegex);
         sb.AppendLine(matchValue);
         if (HasNewLinesInBetween.HasValue && HasNewLinesInBetween.Value) {
           sb.AppendLine();
@@ -74,6 +72,18 @@ namespace TextReplacer.ViewModel {
     public override void Clear() {
       base.Clear();
       AddInfo(_infoTemplateText);
+    }
+
+    private Dictionary<String, String> GetCharactersToRemoveDictionary() {
+      var charactersToRemoveDict = CharactersToRemove
+        ?.Split(new String[] { "" }, StringSplitOptions.RemoveEmptyEntries)
+        .ToDictionary(x => x, y => "") 
+        ?? new Dictionary<String, String>();
+      if (RemoveWhitespaces ?? false) {
+        charactersToRemoveDict[" "] = "";
+      }
+
+      return charactersToRemoveDict;
     }
   }
 }
