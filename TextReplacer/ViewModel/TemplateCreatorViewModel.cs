@@ -10,6 +10,7 @@ namespace TextReplacer.ViewModel {
     private String _infoTemplateText = "Info: Variable == 1:1 *Variable == Grosser Anfang _Variable == kleiner Anfang";
 
     public TemplateCreatorViewModel() {
+      SetStatusToStandard();
       AddInfo(_infoTemplateText);
     }
 
@@ -38,10 +39,11 @@ namespace TextReplacer.ViewModel {
     }
 
     public override void Start() {
+      SetStatusToStandard();
       if (String.IsNullOrEmpty(TemplateText)
         || String.IsNullOrEmpty(VariableText)
         || String.IsNullOrEmpty(SplitChar)) {
-        SetStatusToInfo("Alle Felder müssen ausgefüllt sein");
+        SetStatusToInfo("Bitte alles ausfüllen");
         return;
       }
 

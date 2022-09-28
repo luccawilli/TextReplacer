@@ -14,6 +14,18 @@ using TextReplacer.Enum;
 namespace TextReplacer.ViewModel {
   public class BaseViewModel : BindableBase {
 
+    private Brush _statusForeground;
+    public Brush StatusForeground {
+      get => _statusForeground;
+      set => SetProperty(ref _statusForeground, value);
+    }
+
+    private String _statusText;
+    public String StatusText {
+      get => _statusText;
+      set => SetProperty(ref _statusText, value);
+    }
+
     private ICommand _startCommand;
 
     public ICommand StartCommand {
@@ -118,6 +130,7 @@ namespace TextReplacer.ViewModel {
     public virtual void Clear() {
       ResultText = null;
       InfoMessages.Clear();
+      SetStatusToStandard();
     }
 
     public virtual void Copy() {
@@ -125,6 +138,7 @@ namespace TextReplacer.ViewModel {
         return;
       }
       Clipboard.SetText(ResultText);
+      SetStatusInfo("Kopiert!");
     }
 
     public Boolean CreateFile(Boolean overrideExistingFiles, String fileName, String content) {
@@ -200,8 +214,21 @@ namespace TextReplacer.ViewModel {
 
       return replacements;
     }
+    protected void SetStatusToStandard() {
+      StatusForeground = Brushes.Black;
+      StatusText = "Alles okay";
+    }
+    private void SetStatusDanger(string text) {
+      StatusForeground = Brushes.Red;
+      StatusText = text;
+    }
+    private void SetStatusInfo(string text) {
+      StatusForeground = Brushes.Black;
+      StatusText = text;
+    }
 
     protected void SetStatusToInfo(String text) {
+      SetStatusDanger(text);
       InfoMessages.Add(new InfoMessage() { Brush = Brushes.Red, Message = text });
     }
 

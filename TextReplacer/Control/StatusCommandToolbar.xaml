@@ -13,14 +13,22 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <DockPanel Grid.Row="1" HorizontalAlignment="Right">
-        <Button x:Name="ClearButton" Content="Clear" Margin="10,10,5,10" 
-                    Command="{Binding ClearCommand}" Width="80" Style="{StaticResource SecondaryButton}"/>
-        <Button x:Name="CopyButton" Content="Copy" Margin="5,10,5,10" 
-                    Command="{Binding CopyCommand}" Width="80" Style="{StaticResource CopyButtonWithIcon}" />
-        <Button x:Name="SaveButton" Content="Save" Margin="5,10,5,10" 
-                    Command="{Binding SaveCommand}" Width="80" Style="{StaticResource SaveButtonWithIcon}"/>
-        <Button x:Name="StartButton" Content="Start" Margin="5,10,10,10" 
-                    Command="{Binding StartCommand}" Width="80" HorizontalAlignment="Right" Style="{StaticResource PrimaryButtonWithIcon}"/>
+    <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
+        <Border CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="{Binding StatusText}" 
+                        Foreground="{Binding StatusForeground}" 
+                        FontWeight="SemiBold" Margin="10" Height="20"
+                        TextWrapping="Wrap"/>
+        </Border>
+        <DockPanel Grid.Row="1" HorizontalAlignment="Right">
+            <Button x:Name="ClearButton" Content="Clear" Margin="10,10,5,10" 
+                Command="{Binding ClearCommand}" Width="80" Style="{StaticResource SecondaryButton}"/>
+            <Button x:Name="CopyButton" Content="Copy" Margin="5,10,5,10" 
+                Command="{Binding CopyCommand}" Width="80" Style="{StaticResource CopyButtonWithIcon}" />
+            <Button x:Name="SaveButton" Content="Save" Margin="5,10,5,10" 
+                Command="{Binding SaveCommand}" Width="80" Style="{StaticResource SaveButtonWithIcon}"/>
+            <Button x:Name="StartButton" Content="Start" Margin="5,10,10,10" 
+                Command="{Binding StartCommand}" Width="80" HorizontalAlignment="Right" Style="{StaticResource PrimaryButtonWithIcon}"/>
+        </DockPanel>
     </DockPanel>
 </UserControl>

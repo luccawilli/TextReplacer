@@ -10,6 +10,7 @@ namespace TextReplacer.ViewModel {
     private String _infoTemplateText = "Info: Mit dem Regex-Pattern kann Text extrahiert werden";
 
     public RgExViewModel() {
+      SetStatusToStandard();
       AddInfo(_infoTemplateText);
     }
 
@@ -38,9 +39,10 @@ namespace TextReplacer.ViewModel {
     }
 
     public override void Start() {
+      SetStatusToStandard();
       if (String.IsNullOrEmpty(TemplateText)
        || String.IsNullOrEmpty(RegexPattern)) {
-        SetStatusToInfo("Alle Felder müssen ausgefüllt sein");
+        SetStatusToInfo("Bitte alles ausfüllen");
         return;
       }
 

@@ -8,6 +8,7 @@ namespace TextReplacer.ViewModel {
   public class TextReplacerViewModel : BaseViewModel {
 
     public TextReplacerViewModel() {
+      SetStatusToStandard();
       AddInfo(InfoTemplateText);
     }
 
@@ -35,6 +36,7 @@ namespace TextReplacer.ViewModel {
 
     /// <summary>Create a result from the given template and replaces the replacement chars with the given insert labels.</summary>
     public override void Start() {
+      SetStatusToStandard();
       String templateText = TemplateText;
       String replacementCharacters = ReplacementChars;
       String seperator = SplitCharsForLabels;
@@ -44,7 +46,7 @@ namespace TextReplacer.ViewModel {
         || String.IsNullOrEmpty(replacementCharacters)
         || String.IsNullOrEmpty(seperator)
         || String.IsNullOrEmpty(toInsertLabelText)) {
-        SetStatusToInfo("Alle Felder müssen ausgefüllt sein");
+        SetStatusToInfo("Bitte alles ausfüllen");
         return;
       }
 

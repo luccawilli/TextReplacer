@@ -33,7 +33,9 @@
                 </Grid.RowDefinitions>
 
                 <t:InfoMessageList Grid.Row="0" InfoMessages="{Binding InfoMessages}" />
-                <t:StatusCommandToolbar Grid.Row="1" 
+                <t:StatusCommandToolbar Grid.Row="1"  
+                                    StatusText="{Binding StatusText}" 
+                                    StatusForeground="{Binding StatusForeground}" 
                                     ClearCommand="{Binding ClearCommand}" 
                                     SaveCommand="{Binding SaveCommand}" 
                                     StartCommand="{Binding StartCommand}"
