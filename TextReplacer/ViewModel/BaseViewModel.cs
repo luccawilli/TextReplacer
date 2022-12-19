@@ -183,7 +183,12 @@ namespace TextReplacer.ViewModel {
     /// <param name="regex"></param>
     /// <returns></returns>
     public static String GetReplacedText(String template, Dictionary<String, String> replacements, Regex regex) {
-      template = regex.Replace(template, m => replacements[m.Value]);
+      template = regex.Replace(template, m => {
+        if (!replacements.ContainsKey(m.Value)) {
+          return "";
+        }
+        return replacements[m.Value];
+      });
       return template;
     }
 
