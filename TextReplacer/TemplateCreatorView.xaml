@@ -16,70 +16,61 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border CornerRadius="5" Padding="10,5,5,5" Background="{StaticResource MainBackgroundBrush}">
+    <Border CornerRadius="5" Padding="10,5,5,5" Background="{StaticResource MainBackgroundBrush}">        
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="65"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
 
-                <t:InfoMessageList Grid.Row="0" InfoMessages="{Binding InfoMessages}" />
-                <t:StatusCommandToolbar Grid.Row="1"
-                                    StatusText="{Binding StatusText}" 
-                                    StatusForeground="{Binding StatusForeground}" 
-                                    ClearCommand="{Binding ClearCommand}" 
-                                    SaveCommand="{Binding SaveCommand}" 
-                                    StartCommand="{Binding StartCommand}" 
-                                    CopyCommand="{Binding CopyCommand}"/>
+            <t:InfoMessageList Grid.Row="0" InfoMessages="{Binding InfoMessages}" />
+            <t:StatusCommandToolbar Grid.Row="1"
+                                StatusText="{Binding StatusText}" 
+                                StatusForeground="{Binding StatusForeground}" 
+                                ClearCommand="{Binding ClearCommand}" 
+                                SaveCommand="{Binding SaveCommand}" 
+                                StartCommand="{Binding StartCommand}" 
+                                CopyCommand="{Binding CopyCommand}"/>
 
-                <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
-                    <Grid Background="White">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="10" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="10" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <t:TemplateTextBox Grid.Column="0" TemplateText="{Binding TemplateText}"/>
-                        <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                        <DockPanel Grid.Column="2" LastChildFill="True">
-                            <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
-                            <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitCharsForLabels}" Height="25" Width="30" AcceptsReturn="False"/>
+            <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <t:TemplateTextBox Grid.Column="0" TemplateText="{Binding TemplateText}"/>
+                    <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    <DockPanel Grid.Column="2" LastChildFill="True">
+                        <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
+                        <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitCharsForLabels}" Height="25" Width="30" AcceptsReturn="False"/>
 
 
-                            <TextBlock DockPanel.Dock="Top" Text="Variablen-Trennzeichen" Style="{StaticResource Titles}"/>
-                            <TextBox DockPanel.Dock="Top" x:Name="SplitChar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitChar}" Height="25" Width="30"/>
+                        <TextBlock DockPanel.Dock="Top" Text="Variablen-Trennzeichen" Style="{StaticResource Titles}"/>
+                        <TextBox DockPanel.Dock="Top" x:Name="SplitChar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitChar}" Height="25" Width="30"/>
 
-                            <TextBlock DockPanel.Dock="Top" Text="Variablen" Style="{StaticResource Titles}"/>
-                            <TextBox DockPanel.Dock="Top" x:Name="Variables" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding VariableText}" Height="25"/>
+                        <TextBlock DockPanel.Dock="Top" Text="Variablen" Style="{StaticResource Titles}"/>
+                        <TextBox DockPanel.Dock="Top" x:Name="Variables" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding VariableText}" Height="25"/>
 
-                            <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" Style="{StaticResource Titles}"/>
-                            <TextBox x:Name="ToInsertLabels" Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ToInsertLabels}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                        </DockPanel>
-                        <GridSplitter Grid.Column="3" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                        <t:ResultSettingPanel Grid.Column="4" 
-                                          OutputType="{Binding Path=OutputType, Mode=TwoWay}" 
-                                          OutputFolderPath="{Binding Path=OutputFolderPath, Mode=TwoWay}"
-                                          OutputFileName="{Binding Path=OutputFileName, Mode=TwoWay}"
-                                          OutputOverrideExistingFiles="{Binding Path=OutputOverrideExistingFiles, Mode=TwoWay}"/>
-                    </Grid>
-                </ContentControl>
+                        <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" Style="{StaticResource Titles}"/>
+                        <TextBox x:Name="ToInsertLabels" Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ToInsertLabels}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    </DockPanel>
+                    <GridSplitter Grid.Column="3" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    <t:ResultSettingPanel Grid.Column="4" 
+                                      OutputType="{Binding Path=OutputType, Mode=TwoWay}" 
+                                      OutputFolderPath="{Binding Path=OutputFolderPath, Mode=TwoWay}"
+                                      OutputFileName="{Binding Path=OutputFileName, Mode=TwoWay}"
+                                      OutputOverrideExistingFiles="{Binding Path=OutputOverrideExistingFiles, Mode=TwoWay}"/>
+                </Grid>
+            </ContentControl>
 
-                <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
-                <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"/>
-            </Grid>
-            <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-            <t:TemplateList Grid.Column="2" Templates="{Binding Templates}" />
+            <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
+            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"/>
         </Grid>
     </Border>
 </UserControl>
