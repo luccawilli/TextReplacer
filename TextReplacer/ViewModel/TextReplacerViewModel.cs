@@ -82,14 +82,6 @@ namespace TextReplacer.ViewModel {
       ResultText = resultText.ToString();
     }
 
-    public override void Save() {
-      var template = new TemplateDto() {
-        Name = "New Template",
-        DisplayText = TemplateText,
-      };
-      Templates.Add(template);
-    }
-
     public override void Clear() {
       base.Clear();
       AddInfo(InfoTemplateText);

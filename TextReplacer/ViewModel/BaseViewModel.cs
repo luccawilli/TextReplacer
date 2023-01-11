@@ -114,12 +114,6 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _outputOverrideExistingFiles, value);
     }
 
-    private ObservableCollection<TemplateDto> _templates = new ObservableCollection<TemplateDto>();
-    public ObservableCollection<TemplateDto> Templates {
-      get => _templates;
-      set => SetProperty(ref _templates, value);
-    }
-
 
     #region Methods
 

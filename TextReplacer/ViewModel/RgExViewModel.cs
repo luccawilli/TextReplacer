@@ -63,14 +63,6 @@ namespace TextReplacer.ViewModel {
       ResultText = sb.ToString();
     }
 
-    public override void Save() {
-      var template = new TemplateDto() {
-        Name = "New Template",
-        DisplayText = RegexPattern,
-      };
-      Templates.Add(template);
-    }
-
     public override void Clear() {
       base.Clear();
       AddInfo(_infoTemplateText);

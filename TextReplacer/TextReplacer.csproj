@@ -66,9 +66,6 @@
     <Compile Include="Control\CustomTabHeader.xaml.cs">
       <DependentUpon>CustomTabHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\TemplateList.xaml.cs">
-      <DependentUpon>TemplateList.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Control\InfoMessageList.xaml.cs">
       <DependentUpon>InfoMessageList.xaml</DependentUpon>
     </Compile>
@@ -99,15 +96,10 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RgExViewModel.cs" />
     <Compile Include="ViewModel\TemplateCreatorViewModel.cs" />
-    <Compile Include="ViewModel\TemplateDto.cs" />
     <Compile Include="ViewModel\TextReplacerViewModel.cs" />
     <Page Include="Control\CustomTabHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\TemplateList.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Control\InfoMessageList.xaml">
       <SubType>Designer</SubType>
