@@ -38,30 +38,13 @@
             <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
                 <Grid Background="White">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="10" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <t:TemplateTextBox Grid.Column="0" TemplateText="{Binding TemplateText}"/>
+                    <t:TemplateCreatorControl  Grid.Column="0" DataContext="{Binding TemplateCreatorControlViewModel}"></t:TemplateCreatorControl>
                     <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    <DockPanel Grid.Column="2" LastChildFill="True">
-                        <TextBlock DockPanel.Dock="Top" Text="Trennzeichen" Style="{StaticResource Titles}"/>
-                        <TextBox DockPanel.Dock="Top" x:Name="SplitCharsForLabels" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitCharsForLabels}" Height="25" Width="30" AcceptsReturn="False"/>
-
-
-                        <TextBlock DockPanel.Dock="Top" Text="Variablen-Trennzeichen" Style="{StaticResource Titles}"/>
-                        <TextBox DockPanel.Dock="Top" x:Name="SplitChar" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,10,10" Text="{Binding SplitChar}" Height="25" Width="30"/>
-
-                        <TextBlock DockPanel.Dock="Top" Text="Variablen" Style="{StaticResource Titles}"/>
-                        <TextBox DockPanel.Dock="Top" x:Name="Variables" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,5,10,10" Text="{Binding VariableText}" Height="25"/>
-
-                        <TextBlock DockPanel.Dock="Top" Text="Einzufügende Labels" Style="{StaticResource Titles}"/>
-                        <TextBox x:Name="ToInsertLabels" Margin="10,5,10,10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ToInsertLabels}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    </DockPanel>
-                    <GridSplitter Grid.Column="3" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    <t:ResultSettingPanel Grid.Column="4" 
+                    <t:ResultSettingPanel Grid.Column="2" 
                                       OutputType="{Binding Path=OutputType, Mode=TwoWay}" 
                                       OutputFolderPath="{Binding Path=OutputFolderPath, Mode=TwoWay}"
                                       OutputFileName="{Binding Path=OutputFileName, Mode=TwoWay}"

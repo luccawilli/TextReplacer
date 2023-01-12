@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="TextReplacer.Control.WorkFlowAddControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TextReplacer.Control"
+             mc:Ignorable="d" 
+             Name="workFlowAddControl" 
+             xmlns:designData="clr-namespace:TextReplacer.ViewModel"
+             d:DataContext="{d:DesignInstance {x:Type designData:WorkFlowViewModel}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Styles\StylesWithIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Text="Fügen Sie einen neuen Schritt hinzu"/>
+        <Button DockPanel.Dock="Bottom" Margin="5,5,5,5" Command="{Binding AddTextReplacerCommand}" Style="{StaticResource SecondaryButton}">
+            <local:CustomTabHeader DockPanel.Dock="Bottom" ImageSource="{StaticResource TextReplacerDrawingImage}" Text="TextReplacer" TextVisibility="Visible" Height="45"/>
+        </Button>
+        <Button DockPanel.Dock="Bottom" Margin="5,5,5,5" Command="{Binding AddTemplateCreatorCommand}" Style="{StaticResource SecondaryButton}">
+            <local:CustomTabHeader DockPanel.Dock="Bottom" ImageSource="{StaticResource TemplateCreatorDrawingImage}" Text="TemplateCreator" TextVisibility="Visible" Height="45"/>
+        </Button>
+        <Button DockPanel.Dock="Bottom" Margin="5,5,5,5" Command="{Binding AddRgExCommand}" Style="{StaticResource SecondaryButton}">
+            <local:CustomTabHeader DockPanel.Dock="Bottom" ImageSource="{StaticResource RgExDrawingImage}" Text="RegExr" TextVisibility="Visible"  Height="45"/>
+        </Button>
+    </StackPanel>
+</UserControl>

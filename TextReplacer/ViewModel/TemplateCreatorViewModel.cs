@@ -10,33 +10,26 @@ namespace TextReplacer.ViewModel {
     private String _infoTemplateText = "Info: Variable == 1:1 *Variable == Grosser Anfang _Variable == kleiner Anfang";
 
     public TemplateCreatorViewModel() {
+      TemplateCreatorControlViewModel = new TemplateCreatorControlViewModel();
       SetStatusToStandard();
       AddInfo(_infoTemplateText);
     }
 
-    private String _splitCharsForLabels = "\\r\\n";
-    public String SplitCharsForLabels {
-      get => _splitCharsForLabels;
-      set => SetProperty(ref _splitCharsForLabels, value);
+    private TemplateCreatorControlViewModel _templateCreatorControlViewModel;
+    public TemplateCreatorControlViewModel TemplateCreatorControlViewModel {
+      get => _templateCreatorControlViewModel;
+      set => SetProperty(ref _templateCreatorControlViewModel, value);
     }
 
-    private String _variableText = "1,2,3";
-    public String VariableText {
-      get => _variableText;
-      set => SetProperty(ref _variableText, value);
-    }
+    public String TemplateText => TemplateCreatorControlViewModel.TemplateText;
 
-    private String _splitChar = ",";
-    public String SplitChar {
-      get => _splitChar;
-      set => SetProperty(ref _splitChar, value);
-    }
+    public String SplitCharsForLabels => TemplateCreatorControlViewModel.SplitCharsForLabels;
 
-    private String _toInsertLabels;
-    public String ToInsertLabels {
-      get => _toInsertLabels;
-      set => SetProperty(ref _toInsertLabels, value);
-    }
+    public String VariableText => TemplateCreatorControlViewModel.VariableText;
+
+    public String SplitChar => TemplateCreatorControlViewModel.SplitChar;
+
+    public String ToInsertLabels => TemplateCreatorControlViewModel.ToInsertLabels;
 
     public override void Start() {
       SetStatusToStandard();

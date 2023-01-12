@@ -8,29 +8,26 @@ namespace TextReplacer.ViewModel {
   public class TextReplacerViewModel : BaseViewModel {
 
     public TextReplacerViewModel() {
+      TextReplacerControlViewModel = new TextReplacerControlViewModel();
       SetStatusToStandard();
       AddInfo(InfoTemplateText);
     }
 
     public String InfoTemplateText => $"Info: {ReplacementChars} == 1:1 *{ReplacementChars} == Grosser Anfang _{ReplacementChars} == kleiner Anfang";
 
-    private String _replacementChars = "xxx";
-    public String ReplacementChars {
-      get => _replacementChars;
-      set => SetProperty(ref _replacementChars, value);
+    private TextReplacerControlViewModel _textReplacerControlViewModel;
+    public TextReplacerControlViewModel TextReplacerControlViewModel {
+      get => _textReplacerControlViewModel;
+      set => SetProperty(ref _textReplacerControlViewModel, value);
     }
 
-    private String _splitCharsForLabels = "\\r\\n";
-    public String SplitCharsForLabels {
-      get => _splitCharsForLabels;
-      set => SetProperty(ref _splitCharsForLabels, value);
-    }
+    public String TemplateText => TextReplacerControlViewModel.TemplateText;
 
-    private String _toInsertLabels;
-    public String ToInsertLabels {
-      get => _toInsertLabels;
-      set => SetProperty(ref _toInsertLabels, value);
-    }
+    public String ReplacementChars => TextReplacerControlViewModel.ReplacementChars;
+
+    public String SplitCharsForLabels => TextReplacerControlViewModel.SplitCharsForLabels;
+
+    public String ToInsertLabels => TextReplacerControlViewModel.ToInsertLabels;
 
     #region Methods
 

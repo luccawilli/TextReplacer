@@ -110,6 +110,23 @@
         </DrawingImage.Drawing>
     </DrawingImage>
 
+    <DrawingImage x:Key="AddDrawingImage">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V512 H512 V0 H0 Z">
+                <DrawingGroup.Transform>
+                    <TranslateTransform X="0.5" Y="0.5" />
+                </DrawingGroup.Transform>
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Geometry="F0 M512,512z M0,0z M245.5,-0.5C252.167,-0.5 258.833,-0.5 265.5,-0.5 283.484,4.65165 294.984,16.3183 300,34.5 300.5,93.1657 300.667,151.832 300.5,210.5 359.168,210.333 417.834,210.5 476.5,211 494.682,216.016 506.348,227.516 511.5,245.5 511.5,252.167 511.5,258.833 511.5,265.5 506.348,283.484 494.682,294.984 476.5,300 417.834,300.5 359.168,300.667 300.5,300.5 300.667,359.168 300.5,417.834 300,476.5 294.984,494.682 283.484,506.348 265.5,511.5 258.833,511.5 252.167,511.5 245.5,511.5 227.516,506.348 216.016,494.682 211,476.5 210.5,417.834 210.333,359.168 210.5,300.5 151.832,300.667 93.1657,300.5 34.5,300 16.3183,294.984 4.65165,283.484 -0.5,265.5 -0.5,258.833 -0.5,252.167 -0.5,245.5 4.65165,227.516 16.3183,216.016 34.5,211 93.1657,210.5 151.832,210.333 210.5,210.5 210.333,151.832 210.5,93.1657 211,34.5 216.016,16.3183 227.516,4.65165 245.5,-0.5z">
+                        <GeometryDrawing.Brush>
+                            <SolidColorBrush Color="#FF000000" Opacity="0.996" />
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
     <DrawingImage x:Key="TextReplacerDrawingImage">
         <DrawingImage.Drawing>
             <DrawingGroup ClipGeometry="M0,0 V512 H512 V0 H0 Z">

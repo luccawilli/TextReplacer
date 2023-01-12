@@ -23,7 +23,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>    
-    <TabControl x:Name="tabControl" TabStripPlacement="Left" BorderThickness="0" Background="White">
+    <TabControl x:Name="tabControl" ItemsSource="{Binding TabItems}" TabStripPlacement="Left" BorderThickness="0" Background="White">
         <TabItem Style="{StaticResource PillsTabItem}">
             <TabItem.Header>
                 <t:CustomTabHeader ImageSource="{StaticResource TextReplacerDrawingImage}" Text="TextReplacer" TextVisibility="{Binding TextVisibility}" />
@@ -46,7 +46,7 @@
             <TabItem.Header>
                 <t:CustomTabHeader ImageSource="{StaticResource WorkFlowDrawingImage}" Text="WorkFlow" TextVisibility="{Binding TextVisibility}"/>
             </TabItem.Header>
-            <local:RgExView DataContext="{Binding RgExViewModel}" FontWeight="Normal" />
+            <local:WorkFlowView DataContext="{Binding WorkFlowViewModel}" FontWeight="Normal" />
         </TabItem>
     </TabControl>
 </Window>

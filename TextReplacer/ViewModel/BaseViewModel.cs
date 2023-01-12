@@ -78,12 +78,6 @@ namespace TextReplacer.ViewModel {
 
     public ObservableCollection<InfoMessage> InfoMessages { get; set; } = new ObservableCollection<InfoMessage>();
 
-    private String _templateText;
-    public String TemplateText {
-      get => _templateText;
-      set => SetProperty(ref _templateText, value);
-    }
-
     private String _resultText;
     public String ResultText {
       get => _resultText;
