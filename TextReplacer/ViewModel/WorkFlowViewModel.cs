@@ -95,5 +95,6 @@ namespace TextReplacer.ViewModel {
       base.Clear();
       AddInfo(_infoTemplateText);
     }
+
   }
 }
