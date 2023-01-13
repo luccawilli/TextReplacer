@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
   public class TextReplacerViewModel : BaseViewModel {
@@ -31,47 +32,47 @@ namespace TextReplacer.ViewModel {
 
     #region Methods
 
-    /// <summary>Create a result from the given template and replaces the replacement chars with the given insert labels.</summary>
-    public override void Start() {
+    public override bool Validate() {
       SetStatusToStandard();
-
-      String templateText = TemplateText;
-      String replacementCharacters = ReplacementChars;
-      String seperator = SplitCharsForLabels;
-      String toInsertLabelText = ToInsertLabels;
-
-      if (String.IsNullOrEmpty(templateText)
-        || String.IsNullOrEmpty(replacementCharacters)
-        || String.IsNullOrEmpty(seperator)
-        || String.IsNullOrEmpty(toInsertLabelText)) {
+      if (String.IsNullOrEmpty(TemplateText)
+        || String.IsNullOrEmpty(ReplacementChars)
+        || String.IsNullOrEmpty(SplitCharsForLabels)
+        || String.IsNullOrEmpty(ToInsertLabels)) {
         SetStatusToInfo("Bitte alles ausfüllen");
-        return;
+        return false;
       }
-
-      // split the labels on the seperator
-      if (seperator == "\\r\\n") {
-        seperator = Environment.NewLine;
-      }
-      var splittedLabels = toInsertLabelText.Split(new String[] { seperator }, StringSplitOptions.RemoveEmptyEntries);
+      String seperator = ReplacerHelper.GetSeperator(SplitCharsForLabels);
+      string[] splittedLabels = GetSplittedLabels(ToInsertLabels, seperator);
       if (!splittedLabels.Any()) {
         SetStatusToInfo("Keine Labels gefunden");
-        return;
+        return false;
       }
+      return base.Validate();
+    }
+
+    /// <summary>Create a result from the given template and replaces the replacement chars with the given insert labels.</summary>
+    public override void Start() {
+      String seperator = ReplacerHelper.GetSeperator(SplitCharsForLabels);
+      String[] splittedLabels = GetSplittedLabels(ToInsertLabels, seperator);
 
       // Replace the text in the template with the label and add it to the output
       StringBuilder resultText = new StringBuilder();
       foreach (var label in splittedLabels) {
         StringBuilder sb = new StringBuilder();
 
-        Dictionary<String, String> replacements = GetReplacements(new string[] { replacementCharacters }, new string[] { label });
-        Regex regex = GetReplacerRegex(replacements);
-        String text = GetReplacedText(templateText, replacements, regex);
+        Dictionary<String, String> replacements = ReplacerHelper.GetReplacements(new string[] { ReplacementChars }, new string[] { label });
+        Regex regex = ReplacerHelper.GetReplacerRegex(replacements);
+        String text = ReplacerHelper.GetReplacedText(TemplateText, replacements, regex);
         sb.AppendLine(text);
 
-        resultText.Append(ApplyOutputSettings(sb, replacements, regex, OutputFileName));
+        resultText.Append(ApplyOutputSettings(sb, replacements, regex));
       }
 
       ResultText = resultText.ToString();
+    }
+
+    private static String[] GetSplittedLabels(String toInsertLabels, String seperator) {
+      return toInsertLabels.Split(new String[] { seperator }, StringSplitOptions.RemoveEmptyEntries);
     }
 
     public override void Clear() {

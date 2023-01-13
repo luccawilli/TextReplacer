@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
   public class RgExViewModel : BaseViewModel {
@@ -27,24 +28,26 @@ namespace TextReplacer.ViewModel {
     public Boolean? HasNewLinesInBetween => RgExControlViewModel.HasNewLinesInBetween;
     public Boolean? RemoveWhitespaces => RgExControlViewModel.RemoveWhitespaces;
 
-    public override void Start() {
+    public override bool Validate() {
       SetStatusToStandard();
-      base.Start();
       if (String.IsNullOrEmpty(TemplateText)
        || String.IsNullOrEmpty(RegexPattern)) {
         SetStatusToInfo("Bitte alles ausfüllen");
-        return;
+        return false;
       }
+      return base.Validate();
+    }
 
+    public override void Start() {
       Regex regex = new Regex(RegexPattern);
       MatchCollection matches = regex.Matches(TemplateText);
 
       Dictionary<String, String> charactersToRemoveDict = GetCharactersToRemoveDictionary();
-      Regex charactersToRemoveRegex = GetReplacerRegex(charactersToRemoveDict);
+      Regex charactersToRemoveRegex = ReplacerHelper.GetReplacerRegex(charactersToRemoveDict);
 
       StringBuilder sb = new StringBuilder();
       foreach (Match match in matches) {
-        String matchValue = GetReplacedText(match.Value, charactersToRemoveDict, charactersToRemoveRegex);
+        String matchValue = ReplacerHelper.GetReplacedText(match.Value, charactersToRemoveDict, charactersToRemoveRegex);
         sb.AppendLine(matchValue);
         if (HasNewLinesInBetween.HasValue && HasNewLinesInBetween.Value) {
           sb.AppendLine();

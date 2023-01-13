@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -10,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TextReplacer.Binding;
 using TextReplacer.Enum;
+using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
   public class BaseViewModel : BindableBase {
@@ -146,84 +145,10 @@ namespace TextReplacer.ViewModel {
       SetStatusInfo("Kopiert!");
     }
 
-    public Boolean CreateFile(Boolean overrideExistingFiles, String fileName, String content) {
-      if (File.Exists(fileName) && !overrideExistingFiles) {
-        return false;
-      }
-      try {
-        File.WriteAllText(fileName, content);
-      }
-      catch (Exception) {
-        return false;
-      }
-      return true;
+    public String ApplyOutputSettings(StringBuilder sb, Dictionary<String, String> replacements, Regex regex) {
+      return ReplacerHelper.ApplyOutputSettings(sb, replacements, regex, OutputType, OutputFileName, OutputFolderPath, OutputOverrideExistingFiles);
     }
 
-    /// <summary>Applies the output settings to the given values.</summary>
-    /// <param name="sb">The text to write down.</param>
-    /// <param name="filePath">The path for file.</param>
-    /// <returns>The string to add in the result.</returns>
-    public String ApplyOutputSettings(StringBuilder sb, Dictionary<String, String> replacements, Regex regex, String fileName) {
-      switch (OutputType) {
-        case OutputType.WithNewLines:
-          sb.AppendLine();
-          return sb.ToString();
-        case OutputType.InFiles:
-          fileName = GetReplacedText(fileName, replacements, regex);
-          String filePath = Path.Combine(OutputFolderPath, fileName);
-
-          Boolean fileCreated = CreateFile(OutputOverrideExistingFiles ?? false, filePath, sb.ToString());
-          String prefix = fileCreated ? "Erstellt:" : "Nicht erstellt:";
-          sb.Clear();
-          sb.AppendLine(prefix + " " + filePath);
-          return sb.ToString();
-        default:
-          return sb.ToString();
-      }
-    }
-
-    /// <summary>Replace the variables with the replacements.</summary>
-    /// <param name="template"></param>
-    /// <param name="replacements"></param>
-    /// <param name="regex"></param>
-    /// <returns></returns>
-    public static String GetReplacedText(String template, Dictionary<String, String> replacements, Regex regex) {
-      template = regex.Replace(template, m => {
-        if (!replacements.ContainsKey(m.Value)) {
-          return "";
-        }
-        return replacements[m.Value];
-      });
-      return template;
-    }
-
-    /// <summary>Gets the replacer reges for replacements.</summary>
-    /// <param name="replacements"></param>
-    /// <returns></returns>
-    public static Regex GetReplacerRegex(Dictionary<String, String> replacements) {
-      return new Regex(String.Join("|", replacements.Keys.Select(k => Regex.Escape(k))));
-    }
-
-    /// <summary>Gets the replacements for the given variables and their values.</summary>
-    /// <param name="variables"></param>
-    /// <param name="values"></param>
-    /// <returns></returns>
-    public static Dictionary<String, String> GetReplacements(String[] variables, String[] values) {
-      Dictionary<String, String> replacements = new Dictionary<String, String>();
-      for (Int32 i = 0; i < variables.Length; i++) {
-        if (values.Length < i) {
-          continue;
-        }
-
-        String variable = variables[i];
-        String value = values[i];
-        replacements.Add(variable, value);
-        replacements.Add("*" + variable, Char.ToUpper(value[0]) + value.Substring(1));
-        replacements.Add("_" + variable, Char.ToLower(value[0]) + value.Substring(1));
-      }
-
-      return replacements;
-    }
     protected void SetStatusToStandard() {
       StatusForeground = Brushes.Black;
       StatusText = "Alles okay";

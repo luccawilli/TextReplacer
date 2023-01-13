@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
   public class TemplateCreatorViewModel : BaseViewModel {
@@ -31,21 +32,24 @@ namespace TextReplacer.ViewModel {
 
     public String ToInsertLabels => TemplateCreatorControlViewModel.ToInsertLabels;
 
-    public override void Start() {
+    public override bool Validate() {
       SetStatusToStandard();
       if (String.IsNullOrEmpty(TemplateText)
         || String.IsNullOrEmpty(VariableText)
         || String.IsNullOrEmpty(SplitChar)) {
         SetStatusToInfo("Bitte alles ausfüllen");
-        return;
+        return false;
       }
 
       if (OutputType == Enum.OutputType.InFiles
         && (String.IsNullOrEmpty(OutputFileName) || String.IsNullOrEmpty(OutputFolderPath))) {
         SetStatusToInfo("Bitte Verzeichnis und Dateiname angeben");
-        return;
+        return false;
       }
+      return base.Validate();
+    }
 
+    public override void Start() {
       String[] splitChar = new String[] { SplitChar };
       String[] variables = VariableText.Split(splitChar, StringSplitOptions.None)
         .Distinct()
@@ -62,14 +66,14 @@ namespace TextReplacer.ViewModel {
         StringBuilder sb = new StringBuilder();
         String template = TemplateText;
         String[] values = variableValue.Split(splitChar, StringSplitOptions.None);
-        Dictionary<String, String> replacements = GetReplacements(variables, values);
+        Dictionary<String, String> replacements = ReplacerHelper.GetReplacements(variables, values);
 
-        Regex regex = GetReplacerRegex(replacements);
-        template = GetReplacedText(template, replacements, regex);
+        Regex regex = ReplacerHelper.GetReplacerRegex(replacements);
+        template = ReplacerHelper.GetReplacedText(template, replacements, regex);
 
         sb.AppendLine(template);
 
-        resultSB.Append(ApplyOutputSettings(sb, replacements, regex, OutputFileName));
+        resultSB.Append(ApplyOutputSettings(sb, replacements, regex));
       }
 
       ResultText = resultSB.ToString();
