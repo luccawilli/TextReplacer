@@ -100,5 +100,9 @@ namespace TextReplacer.Service {
           return sb.ToString();
       }
     }
+
+    public static String[] GetSplittedLabels(String toInsertLabels, String seperator) {
+      return toInsertLabels.Split(new String[] { seperator }, StringSplitOptions.RemoveEmptyEntries);
+    }
   }
 }

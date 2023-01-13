@@ -64,10 +64,18 @@ namespace TextReplacer.ViewModel {
     public override void Start() {
       var tabItems = TabItems.Where(x => x.ReplacerType != Enum.ReplacerType.None)
         .Select(x => x.DataContext)
-        .OfType<IStartReplace>();
+        .OfType<IStartReplace>()
+        .ToList();
+
       String startInput = "";
-      foreach (IStartReplace replacer in tabItems) {
-        startInput = replacer.Start(startInput);
+      for (int i = 0; i < tabItems.Count; i++) {
+        var replacer = tabItems[i];
+        if (i == tabItems.Count - 1) { // is last
+          startInput = replacer.Start(startInput, ApplyOutputSettings); // apply output settings only for last step
+        }
+        else {
+          startInput = replacer.Start(startInput, (sb,b,c) => sb.ToString());
+        }
       }
       ResultText = startInput;
     }

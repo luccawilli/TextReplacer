@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
   public class RgExViewModel : BaseViewModel {
@@ -39,21 +34,7 @@ namespace TextReplacer.ViewModel {
     }
 
     public override void Start() {
-      Regex regex = new Regex(RegexPattern);
-      MatchCollection matches = regex.Matches(TemplateText);
-
-      Dictionary<String, String> charactersToRemoveDict = GetCharactersToRemoveDictionary();
-      Regex charactersToRemoveRegex = ReplacerHelper.GetReplacerRegex(charactersToRemoveDict);
-
-      StringBuilder sb = new StringBuilder();
-      foreach (Match match in matches) {
-        String matchValue = ReplacerHelper.GetReplacedText(match.Value, charactersToRemoveDict, charactersToRemoveRegex);
-        sb.AppendLine(matchValue);
-        if (HasNewLinesInBetween.HasValue && HasNewLinesInBetween.Value) {
-          sb.AppendLine();
-        }
-      }
-      ResultText = sb.ToString();
+      ResultText = RgExControlViewModel.Start("", ApplyOutputSettings);
     }
 
     public override void Clear() {
@@ -61,16 +42,5 @@ namespace TextReplacer.ViewModel {
       AddInfo(_infoTemplateText);
     }
 
-    private Dictionary<String, String> GetCharactersToRemoveDictionary() {
-      var charactersToRemoveDict = CharactersToRemove
-        ?.Split(new String[] { "" }, StringSplitOptions.RemoveEmptyEntries)
-        .ToDictionary(x => x, y => "") 
-        ?? new Dictionary<String, String>();
-      if (RemoveWhitespaces ?? false) {
-        charactersToRemoveDict[" "] = "";
-      }
-
-      return charactersToRemoveDict;
-    }
   }
 }

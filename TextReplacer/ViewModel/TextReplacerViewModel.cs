@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
@@ -42,7 +39,7 @@ namespace TextReplacer.ViewModel {
         return false;
       }
       String seperator = ReplacerHelper.GetSeperator(SplitCharsForLabels);
-      string[] splittedLabels = GetSplittedLabels(ToInsertLabels, seperator);
+      string[] splittedLabels = ReplacerHelper.GetSplittedLabels(ToInsertLabels, seperator);
       if (!splittedLabels.Any()) {
         SetStatusToInfo("Keine Labels gefunden");
         return false;
@@ -52,27 +49,7 @@ namespace TextReplacer.ViewModel {
 
     /// <summary>Create a result from the given template and replaces the replacement chars with the given insert labels.</summary>
     public override void Start() {
-      String seperator = ReplacerHelper.GetSeperator(SplitCharsForLabels);
-      String[] splittedLabels = GetSplittedLabels(ToInsertLabels, seperator);
-
-      // Replace the text in the template with the label and add it to the output
-      StringBuilder resultText = new StringBuilder();
-      foreach (var label in splittedLabels) {
-        StringBuilder sb = new StringBuilder();
-
-        Dictionary<String, String> replacements = ReplacerHelper.GetReplacements(new string[] { ReplacementChars }, new string[] { label });
-        Regex regex = ReplacerHelper.GetReplacerRegex(replacements);
-        String text = ReplacerHelper.GetReplacedText(TemplateText, replacements, regex);
-        sb.AppendLine(text);
-
-        resultText.Append(ApplyOutputSettings(sb, replacements, regex));
-      }
-
-      ResultText = resultText.ToString();
-    }
-
-    private static String[] GetSplittedLabels(String toInsertLabels, String seperator) {
-      return toInsertLabels.Split(new String[] { seperator }, StringSplitOptions.RemoveEmptyEntries);
+      ResultText = TextReplacerControlViewModel.Start("", ApplyOutputSettings);
     }
 
     public override void Clear() {
