@@ -101,6 +101,8 @@
     <Compile Include="RgExView.xaml.cs">
       <DependentUpon>RgExView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service\BindableBaseStartReplace.cs" />
+    <Compile Include="Service\IStartReplace.cs" />
     <Compile Include="Service\XmlSerializerHelper.cs" />
     <Compile Include="TemplateCreatorView.xaml.cs">
       <DependentUpon>TemplateCreatorView.xaml</DependentUpon>

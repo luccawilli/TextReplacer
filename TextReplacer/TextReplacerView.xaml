@@ -32,7 +32,7 @@
                                     StatusText="{Binding StatusText}" 
                                     StatusForeground="{Binding StatusForeground}" 
                                     ClearCommand="{Binding ClearCommand}" 
-                                    StartCommand="{Binding StartCommand}"
+                                    RunCommand="{Binding RunCommand}"
                                     SaveCommand="{Binding SaveCommand}" 
                                     CopyCommand="{Binding CopyCommand}"/>
 

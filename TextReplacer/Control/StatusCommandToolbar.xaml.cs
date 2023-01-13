@@ -27,11 +27,11 @@ namespace TextReplacer.Control {
     }
 
     // The dependency property which will be accessible on the UserControl
-    public static readonly DependencyProperty StartCommandProperty =
-        DependencyProperty.Register("StartCommand", typeof(ICommand), typeof(StatusCommandToolbar), new UIPropertyMetadata());
-    public ICommand StartCommand {
-      get { return (ICommand)GetValue(StartCommandProperty); }
-      set { SetValue(StartCommandProperty, value); }
+    public static readonly DependencyProperty RunCommandProperty =
+        DependencyProperty.Register("RunCommand", typeof(ICommand), typeof(StatusCommandToolbar), new UIPropertyMetadata());
+    public ICommand RunCommand {
+      get { return (ICommand)GetValue(RunCommandProperty); }
+      set { SetValue(RunCommandProperty, value); }
     }
 
     // The dependency property which will be accessible on the UserControl

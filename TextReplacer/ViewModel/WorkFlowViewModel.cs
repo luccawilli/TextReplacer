@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Linq;
 using System.Windows.Input;
 using TextReplacer.Binding;
 using TextReplacer.Control;
 using TextReplacer.Dto;
+using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
   public class WorkFlowViewModel : BaseViewModel {
@@ -61,8 +62,14 @@ namespace TextReplacer.ViewModel {
     }
 
     public override void Start() {
-      StringBuilder sb = new StringBuilder();
-      ResultText = sb.ToString();
+      var tabItems = TabItems.Where(x => x.ReplacerType != Enum.ReplacerType.None)
+        .Select(x => x.DataContext)
+        .OfType<IStartReplace>();
+      String startInput = "";
+      foreach (IStartReplace replacer in tabItems) {
+        startInput = replacer.Start(startInput);
+      }
+      ResultText = startInput;
     }
 
     public void AddTextReplacer() {

@@ -34,6 +34,7 @@ namespace TextReplacer.ViewModel {
     /// <summary>Create a result from the given template and replaces the replacement chars with the given insert labels.</summary>
     public override void Start() {
       SetStatusToStandard();
+
       String templateText = TemplateText;
       String replacementCharacters = ReplacementChars;
       String seperator = SplitCharsForLabels;
@@ -44,12 +45,6 @@ namespace TextReplacer.ViewModel {
         || String.IsNullOrEmpty(seperator)
         || String.IsNullOrEmpty(toInsertLabelText)) {
         SetStatusToInfo("Bitte alles ausfüllen");
-        return;
-      }
-
-      if (OutputType == Enum.OutputType.InFiles
-        && (String.IsNullOrEmpty(OutputFileName) || String.IsNullOrEmpty(OutputFolderPath))) {
-        SetStatusToInfo("Bitte Verzeichnis und Dateiname angeben");
         return;
       }
 

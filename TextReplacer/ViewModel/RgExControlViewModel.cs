@@ -1,9 +1,9 @@
 ﻿using System;
-using TextReplacer.Binding;
+using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
 
-  public class RgExControlViewModel : BindableBase {
+  public class RgExControlViewModel : BindableBaseStartReplace {
     private String _templateText;
     public String TemplateText {
       get => _templateText;

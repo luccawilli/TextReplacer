@@ -29,6 +29,7 @@ namespace TextReplacer.ViewModel {
 
     public override void Start() {
       SetStatusToStandard();
+      base.Start();
       if (String.IsNullOrEmpty(TemplateText)
        || String.IsNullOrEmpty(RegexPattern)) {
         SetStatusToInfo("Bitte alles ausfüllen");

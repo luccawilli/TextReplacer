@@ -28,7 +28,7 @@
             <Button x:Name="SaveButton" Content="Save" Margin="5,10,5,10" 
                 Command="{Binding SaveCommand}" Width="80" Style="{StaticResource SaveButtonWithIcon}"/>
             <Button x:Name="StartButton" Content="Start" Margin="5,10,10,10" 
-                Command="{Binding StartCommand}" Width="80" HorizontalAlignment="Right" Style="{StaticResource PrimaryButtonWithIcon}"/>
+                Command="{Binding RunCommand}" Width="80" HorizontalAlignment="Right" Style="{StaticResource PrimaryButtonWithIcon}"/>
         </DockPanel>
     </DockPanel>
 </UserControl>

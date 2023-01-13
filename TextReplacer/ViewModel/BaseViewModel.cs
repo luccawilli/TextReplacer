@@ -26,16 +26,16 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _statusText, value);
     }
 
-    private ICommand _startCommand;
+    private ICommand _runCommand;
 
-    public ICommand StartCommand {
+    public ICommand RunCommand {
       get {
-        if (_startCommand == null) {
-          _startCommand = new RelayCommand(
-              param => Start()
+        if (_runCommand == null) {
+          _runCommand = new RelayCommand(
+              param => Run()
           );
         }
-        return _startCommand;
+        return _runCommand;
       }
     }
 
@@ -111,7 +111,24 @@ namespace TextReplacer.ViewModel {
 
     #region Methods
 
-    public virtual void Start() { }
+    public virtual Boolean Validate() {
+      if (OutputType == Enum.OutputType.InFiles
+        && (String.IsNullOrEmpty(OutputFileName) || String.IsNullOrEmpty(OutputFolderPath))) {
+        SetStatusToInfo("Bitte Verzeichnis und Dateiname angeben");
+        return false;
+      }
+      return true;
+    }
+
+    public void Run() {
+      if (Validate()) {
+        Start();
+      }
+    }
+
+    public virtual void Start() {
+
+    }
 
     public virtual void Save() { }
 

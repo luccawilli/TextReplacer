@@ -1,8 +1,8 @@
 ﻿using System;
-using TextReplacer.Binding;
+using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
-  public class TemplateCreatorControlViewModel : BindableBase {
+  public class TemplateCreatorControlViewModel : BindableBaseStartReplace {
 
     private String _templateText;
     public String TemplateText {
@@ -32,6 +32,6 @@ namespace TextReplacer.ViewModel {
     public String ToInsertLabels {
       get => _toInsertLabels;
       set => SetProperty(ref _toInsertLabels, value);
-    }   
+    }
   }
 }
