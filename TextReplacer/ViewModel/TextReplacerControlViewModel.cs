@@ -32,17 +32,22 @@ namespace TextReplacer.ViewModel {
     }
 
     public override string Start(string input, Func<StringBuilder, Dictionary<String, String>, Regex, String> ApplyOutputSettings) {
-      String seperator = ReplacerHelper.GetSeperator(SplitCharsForLabels);
-      String[] splittedLabels = ReplacerHelper.GetSplittedLabels(ToInsertLabels, seperator);
+      String templateText = ReplacerHelper.ReplaceWorkflow(TemplateText, input);
+      String replacementChars = ReplacerHelper.ReplaceWorkflow(ReplacementChars, input);
+      String splitCharsForLabels = ReplacerHelper.ReplaceWorkflow(SplitCharsForLabels, input);
+      String toInsertLabels = ReplacerHelper.ReplaceWorkflow(ToInsertLabels, input);
+
+      String seperator = ReplacerHelper.GetSeperator(splitCharsForLabels);
+      String[] splittedLabels = ReplacerHelper.GetSplittedLabels(toInsertLabels, seperator);
 
       // Replace the text in the template with the label and add it to the output
       StringBuilder resultText = new StringBuilder();
       foreach (var label in splittedLabels) {
         StringBuilder sb = new StringBuilder();
 
-        Dictionary<String, String> replacements = ReplacerHelper.GetReplacements(new string[] { ReplacementChars }, new string[] { label });
+        Dictionary<String, String> replacements = ReplacerHelper.GetReplacements(new string[] { replacementChars }, new string[] { label });
         Regex regex = ReplacerHelper.GetReplacerRegex(replacements);
-        String text = ReplacerHelper.GetReplacedText(TemplateText, replacements, regex);
+        String text = ReplacerHelper.GetReplacedText(templateText, replacements, regex);
         sb.AppendLine(text);
 
         resultText.Append(ApplyOutputSettings(sb, replacements, regex));

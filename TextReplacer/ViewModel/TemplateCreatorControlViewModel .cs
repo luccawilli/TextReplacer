@@ -39,22 +39,28 @@ namespace TextReplacer.ViewModel {
     }
 
     public override string Start(string input, Func<StringBuilder, Dictionary<String, String>, Regex, String> ApplyOutputSettings) {
-      String[] splitChar = new String[] { SplitChar };
-      String[] variables = VariableText.Split(splitChar, StringSplitOptions.None)
+      String templateText = ReplacerHelper.ReplaceWorkflow(TemplateText, input);
+      String splitCharsForLabels = ReplacerHelper.ReplaceWorkflow(SplitCharsForLabels, input);
+      String variableText = ReplacerHelper.ReplaceWorkflow(VariableText, input);
+      String splitChar = ReplacerHelper.ReplaceWorkflow(SplitChar, input);
+      String toInsertLabels = ReplacerHelper.ReplaceWorkflow(ToInsertLabels, input);
+
+      String[] splitChars = new String[] { splitChar };
+      String[] variables = variableText.Split(splitChars, StringSplitOptions.None)
         .Distinct()
         .ToArray();
 
-      String seperator = SplitCharsForLabels;
+      String seperator = splitCharsForLabels;
       // split the labels on the seperator
       if (seperator == "\\r\\n") {
         seperator = Environment.NewLine;
       }
-      List<String> variableValues = ToInsertLabels.Split(new String[] { seperator }, StringSplitOptions.None).ToList();
+      List<String> variableValues = toInsertLabels.Split(new String[] { seperator }, StringSplitOptions.None).ToList();
       StringBuilder resultSB = new StringBuilder();
       foreach (String variableValue in variableValues) {
         StringBuilder sb = new StringBuilder();
-        String template = TemplateText;
-        String[] values = variableValue.Split(splitChar, StringSplitOptions.None);
+        String template = templateText;
+        String[] values = variableValue.Split(splitChars, StringSplitOptions.None);
         Dictionary<String, String> replacements = ReplacerHelper.GetReplacements(variables, values);
 
         Regex regex = ReplacerHelper.GetReplacerRegex(replacements);

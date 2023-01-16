@@ -37,12 +37,16 @@ namespace TextReplacer.ViewModel {
       get => _removeWhitespaces;
       set => SetProperty(ref _removeWhitespaces, value);
     }
+
     public override string Start(string input, Func<StringBuilder, Dictionary<String, String>, Regex, String> ApplyOutputSettings) {
+      String templateText = ReplacerHelper.ReplaceWorkflow(TemplateText, input);
+      String regexPattern = ReplacerHelper.ReplaceWorkflow(RegexPattern, input);
+      String charactersToRemove = ReplacerHelper.ReplaceWorkflow(CharactersToRemove, input);
 
-      Regex regex = new Regex(RegexPattern);
-      MatchCollection matches = regex.Matches(TemplateText);
+      Regex regex = new Regex(regexPattern);
+      MatchCollection matches = regex.Matches(templateText);
 
-      Dictionary<String, String> charactersToRemoveDict = GetCharactersToRemoveDictionary(CharactersToRemove, RemoveWhitespaces);
+      Dictionary<String, String> charactersToRemoveDict = GetCharactersToRemoveDictionary(charactersToRemove, RemoveWhitespaces);
       Regex charactersToRemoveRegex = ReplacerHelper.GetReplacerRegex(charactersToRemoveDict);
 
       StringBuilder sb = new StringBuilder();

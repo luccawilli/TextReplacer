@@ -8,6 +8,14 @@ using TextReplacer.Enum;
 
 namespace TextReplacer.Service {
   public class ReplacerHelper {
+
+    public static String ReplaceWorkflow(String template, String input) {
+      Dictionary<String, String> replacements = new Dictionary<string, string>();
+      replacements.Add("{x}", input);
+      var regex = GetReplacerRegex(replacements);
+      return GetReplacedText(template, replacements, regex);
+    }
+
     /// <summary>Replace the variables with the replacements.</summary>
     /// <param name="template"></param>
     /// <param name="replacements"></param>
