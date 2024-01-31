@@ -111,5 +111,10 @@ namespace TextReplacer.ViewModel {
       AddInfo(_infoTemplateText);
     }
 
+    public override void Save() {
+      base.Save();
+
+    }
+
   }
 }

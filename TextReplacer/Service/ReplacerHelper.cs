@@ -22,6 +22,9 @@ namespace TextReplacer.Service {
     /// <param name="regex"></param>
     /// <returns></returns>
     public static String GetReplacedText(String template, Dictionary<String, String> replacements, Regex regex) {
+      if (template == null) {
+        return "";
+      }
       template = regex.Replace(template, m => {
         if (!replacements.ContainsKey(m.Value)) {
           return "";

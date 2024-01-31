@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using TextReplacer.Enum;
 using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
   public class TemplateCreatorControlViewModel : BindableBaseStartReplace {
+    public override ReplacerType Type => ReplacerType.TemplateCreator;
 
     private String _templateText;
     public String TemplateText {

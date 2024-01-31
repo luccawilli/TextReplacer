@@ -1,247 +1,35 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{34FED564-039B-4539-BE58-1F4DCB79DD59}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TextReplacer</RootNamespace>
-    <AssemblyName>TextReplacer</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net48</TargetFramework>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
+    <AssemblyTitle>TextReplacer</AssemblyTitle>
+    <Product>TextReplacer</Product>
+    <Copyright>Copyright ©  2017</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Replacer.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Binding\BindableBase.cs" />
-    <Compile Include="Binding\RelayCommand.cs" />
-    <Compile Include="Control\CustomTabHeader.xaml.cs">
-      <DependentUpon>CustomTabHeader.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\InfoMessageList.xaml.cs">
-      <DependentUpon>InfoMessageList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\ResultSettingPanel.xaml.cs">
-      <DependentUpon>ResultSettingPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\ResultTextBox.xaml.cs">
-      <DependentUpon>ResultTextBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\WorkFlowAddControl.xaml.cs">
-      <DependentUpon>WorkFlowAddControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\TemplateCreatorControl.xaml.cs">
-      <DependentUpon>TemplateCreatorControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\TextReplacerControl.xaml.cs">
-      <DependentUpon>TextReplacerControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\StatusCommandToolbar.xaml.cs">
-      <DependentUpon>StatusCommandToolbar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\RgExControl.xaml.cs">
-      <DependentUpon>RgExControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\TemplateTextBox.xaml.cs">
-      <DependentUpon>TemplateTextBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Converter\ReplacerTypeIconConverter.cs" />
-    <Compile Include="Converter\EnumBooleanConverter.cs" />
-    <Compile Include="Dto\TabItemElement.cs" />
-    <Compile Include="Enum\OutputType.cs" />
-    <Compile Include="Enum\ReplacerType.cs" />
-    <Compile Include="RgExView.xaml.cs">
-      <DependentUpon>RgExView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Service\BindableBaseStartReplace.cs" />
-    <Compile Include="Service\IStartReplace.cs" />
-    <Compile Include="Service\ReplacerHelper.cs" />
-    <Compile Include="Service\XmlSerializerHelper.cs" />
-    <Compile Include="TemplateCreatorView.xaml.cs">
-      <DependentUpon>TemplateCreatorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\WorkFlowViewModel.cs" />
-    <Compile Include="WorkFlowView.xaml.cs">
-      <DependentUpon>WorkFlowView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TextReplacerView.xaml.cs">
-      <DependentUpon>TextReplacerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\RgExControlViewModel.cs" />
-    <Compile Include="ViewModel\RgExViewModel.cs" />
-    <Compile Include="ViewModel\TemplateCreatorControlViewModel .cs" />
-    <Compile Include="ViewModel\TemplateCreatorViewModel.cs" />
-    <Compile Include="ViewModel\TextReplacerControlViewModel.cs" />
-    <Compile Include="ViewModel\TextReplacerViewModel.cs" />
-    <Page Include="Control\CustomTabHeader.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\InfoMessageList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\ResultSettingPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\ResultTextBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\WorkFlowAddControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Control\TemplateCreatorControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Control\TextReplacerControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Control\StatusCommandToolbar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\RgExControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Control\TemplateTextBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RgExView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\Icons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="InfoMessage.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Styles\SharedStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\StylesWithIcons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TemplateCreatorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WorkFlowView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="TextReplacerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Replacer.ico" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

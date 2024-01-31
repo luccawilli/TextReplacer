@@ -12,5 +12,8 @@ namespace TextReplacer {
       InitializeComponent();
     }
 
-  }
+        private void TextReplacerView_Loaded(object sender, RoutedEventArgs e) {
+
+        }
+    }
 }

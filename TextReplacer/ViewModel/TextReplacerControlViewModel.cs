@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using TextReplacer.Enum;
 using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
   public class TextReplacerControlViewModel : BindableBaseStartReplace {
+
+    public override ReplacerType Type => ReplacerType.TextReplacer;
 
     private String _templateText;
     public String TemplateText {

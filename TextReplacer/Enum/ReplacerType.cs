@@ -3,6 +3,6 @@
     None,
     TextReplacer,
     TemplateCreator,
-    RgEx,
+    RgEx
   }
 }

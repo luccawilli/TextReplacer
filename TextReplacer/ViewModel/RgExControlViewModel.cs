@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using TextReplacer.Enum;
 using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
 
   public class RgExControlViewModel : BindableBaseStartReplace {
+    public override ReplacerType Type => ReplacerType.RgEx;
+
     private String _templateText;
     public String TemplateText {
       get => _templateText;
@@ -51,6 +54,9 @@ namespace TextReplacer.ViewModel {
 
       StringBuilder sb = new StringBuilder();
       foreach (Match match in matches) {
+        if (String.IsNullOrWhiteSpace(match.Value)) {
+          continue;
+        }
         String matchValue = ReplacerHelper.GetReplacedText(match.Value, charactersToRemoveDict, charactersToRemoveRegex);
         sb.AppendLine(matchValue);
         if (HasNewLinesInBetween.HasValue && HasNewLinesInBetween.Value) {
