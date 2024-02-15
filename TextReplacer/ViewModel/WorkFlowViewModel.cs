@@ -113,7 +113,6 @@ namespace TextReplacer.ViewModel {
 
     public override void Save() {
       base.Save();
-
     }
 
   }
