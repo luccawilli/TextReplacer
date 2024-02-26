@@ -17,6 +17,7 @@
         <DockPanel Background="White">
             <DockPanel DockPanel.Dock="Top">
                 <TextBlock DockPanel.Dock="Left" Margin="15,15,15,0" Text="Output" Style="{StaticResource Titles}"/>
+                <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right" Text="{Binding StatusText}" Height="20" FontSize="13" Foreground="{Binding StatusForeground}" Margin="15,15,15,0" TextWrapping="Wrap" />
             </DockPanel>
             <TextBox x:Name="ResultView" TextWrapping="Wrap" Text="{Binding ResultText}" Margin="15,0,15,15" IsReadOnly="True" IsReadOnlyCaretVisible="True" BorderThickness="0"/>
         </DockPanel>

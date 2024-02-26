@@ -14,12 +14,6 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
-        <Border CornerRadius="4" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-            <TextBlock Text="{Binding StatusText}" 
-                        Foreground="{Binding StatusForeground}" 
-                        FontWeight="SemiBold" Margin="10" Height="20"
-                        TextWrapping="Wrap"/>
-        </Border>
         <DockPanel Grid.Row="1" HorizontalAlignment="Right">
             <Button x:Name="ClearButton" Content="Clear" Margin="10,10,5,10" 
                 Command="{Binding ClearCommand}" Width="80" Style="{StaticResource SecondaryButton}"/>

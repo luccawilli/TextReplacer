@@ -1,30 +1,12 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace TextReplacer.Control {
   /// <summary>
   /// Interaction logic for StatusCommandToolbar.xaml
   /// </summary>
   public partial class StatusCommandToolbar : UserControl {   
-    
-    // The dependency property which will be accessible on the UserControl
-    public static readonly DependencyProperty StatusTextProperty =
-        DependencyProperty.Register("StatusText", typeof(String), typeof(StatusCommandToolbar), new UIPropertyMetadata());
-    public String StatusText {
-      get { return (String)GetValue(StatusTextProperty); }
-      set { SetValue(StatusTextProperty, value); }
-    }
-
-    // The dependency property which will be accessible on the UserControl
-    public static readonly DependencyProperty StatusForegroundProperty =
-        DependencyProperty.Register("StatusForeground", typeof(Brush), typeof(StatusCommandToolbar), new UIPropertyMetadata());
-    public Brush StatusForeground {
-      get { return (Brush)GetValue(StatusForegroundProperty); }
-      set { SetValue(StatusForegroundProperty, value); }
-    }
 
     // The dependency property which will be accessible on the UserControl
     public static readonly DependencyProperty RunCommandProperty =

@@ -29,8 +29,6 @@
 
             <t:InfoMessageList Grid.Row="0" InfoMessages="{Binding InfoMessages}" />
             <t:StatusCommandToolbar Grid.Row="1"
-                                    StatusText="{Binding StatusText}" 
-                                    StatusForeground="{Binding StatusForeground}" 
                                     ClearCommand="{Binding ClearCommand}" 
                                     RunCommand="{Binding RunCommand}"
                                     SaveCommand="{Binding SaveCommand}" 
@@ -54,7 +52,9 @@
             </ContentControl>
 
             <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
-            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"/>
+            <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"
+                                    StatusText="{Binding StatusText}" 
+                                    StatusForeground="{Binding StatusForeground}" />
         </Grid>
     </Border>
 </UserControl>
