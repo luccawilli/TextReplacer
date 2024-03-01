@@ -35,6 +35,12 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _hasNewLinesInBetween, value);
     }
 
+    private Boolean? _distinctOutput = false;
+    public Boolean? DistinctOutput {
+      get => _distinctOutput;
+      set => SetProperty(ref _distinctOutput, value);
+    }
+
     private Boolean? _removeWhitespaces = false;
     public Boolean? RemoveWhitespaces {
       get => _removeWhitespaces;
@@ -53,11 +59,19 @@ namespace TextReplacer.ViewModel {
       Regex charactersToRemoveRegex = ReplacerHelper.GetReplacerRegex(charactersToRemoveDict);
 
       StringBuilder sb = new StringBuilder();
+      List<string> matchesValues = new List<string>();
       foreach (Match match in matches) {
-        if (String.IsNullOrWhiteSpace(match.Value)) {
+        matchesValues.Add(match.Value);
+      }
+     
+      if (DistinctOutput ?? false) {
+        matchesValues = matchesValues.Distinct().ToList();
+      }
+      foreach (string match in matchesValues) {
+        if (String.IsNullOrWhiteSpace(match)) {
           continue;
         }
-        String matchValue = ReplacerHelper.GetReplacedText(match.Value, charactersToRemoveDict, charactersToRemoveRegex);
+        String matchValue = ReplacerHelper.GetReplacedText(match, charactersToRemoveDict, charactersToRemoveRegex);
         sb.AppendLine(matchValue);
         if (HasNewLinesInBetween.HasValue && HasNewLinesInBetween.Value) {
           sb.AppendLine();

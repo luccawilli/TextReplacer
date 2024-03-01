@@ -38,6 +38,10 @@
             <CheckBox DockPanel.Dock="Top" Margin="10,5,10,10" IsChecked="{Binding HasNewLinesInBetween}">
                 <TextBlock DockPanel.Dock="Top" Text="Mit Umbruch" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
             </CheckBox>
+
+            <CheckBox DockPanel.Dock="Top" Margin="10,5,10,10" IsChecked="{Binding DistinctOutput}">
+                <TextBlock DockPanel.Dock="Top" Text="Nur Einzigartige (Distinct)" Style="{StaticResource Titles}" Margin="5,-1,0,-1"/>
+            </CheckBox>
         </DockPanel>
     </Grid>
 </UserControl>
