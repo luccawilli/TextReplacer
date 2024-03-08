@@ -48,7 +48,7 @@ namespace TextReplacer.Service {
     public static Dictionary<String, String> GetReplacements(String[] variables, String[] values) {
       Dictionary<String, String> replacements = new Dictionary<String, String>();
       for (Int32 i = 0; i < variables.Length; i++) {
-        if (values.Length < i) {
+        if (values.Length <= i) {
           continue;
         }
 

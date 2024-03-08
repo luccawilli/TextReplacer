@@ -14,7 +14,7 @@
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="OuterBorder" CornerRadius="3"
                         BorderThickness="2" BorderBrush="Transparent" Padding="1">
-                        <Border CornerRadius="4,4,4,4"
+                        <Border CornerRadius="4"
                         BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
                             <ContentPresenter x:Name="contentPresenter" 
                                       ContentTemplate="{TemplateBinding ContentTemplate}" 

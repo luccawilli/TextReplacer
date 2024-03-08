@@ -20,7 +20,6 @@ namespace TextReplacer.Control {
       set { SetValue(InfoMessagesPropertyProperty, value); }
     }
 
-
     /// <summary>Removes the selected message from the list.</summary>
     /// <param name="sender">Object</param>
     /// <param name="e">RoutedEventArgs</param>

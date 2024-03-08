@@ -40,6 +40,8 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _toInsertLabels, value);
     }
 
+    public override string Text => TemplateText;
+
     public override string Start(string input, Func<StringBuilder, Dictionary<String, String>, Regex, String> ApplyOutputSettings) {
       String templateText = ReplacerHelper.ReplaceWorkflow(TemplateText, input);
       String splitCharsForLabels = ReplacerHelper.ReplaceWorkflow(SplitCharsForLabels, input);
@@ -74,6 +76,16 @@ namespace TextReplacer.ViewModel {
       }
 
       return resultSB.ToString();
+    }
+
+    public override object Clone() {
+      return new TemplateCreatorControlViewModel() { 
+        TemplateText = this.TemplateText,
+        SplitCharsForLabels = this.SplitCharsForLabels,
+        VariableText = this.VariableText,
+        SplitChar = this.SplitChar,
+        ToInsertLabels = this.ToInsertLabels
+      };
     }
   }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
+using TextReplacer.Service;
 
 namespace TextReplacer.ViewModel {
   public class TemplateCreatorViewModel : BaseViewModel {
 
     private String _infoTemplateText = "Info: Variable == 1:1 *Variable == Grosser Anfang _Variable == kleiner Anfang";
 
-    public TemplateCreatorViewModel() {
+    public TemplateCreatorViewModel(MainViewModel main) : base(main) {
       TemplateCreatorControlViewModel = new TemplateCreatorControlViewModel();
       SetStatusToStandard();
       AddInfo(_infoTemplateText);
@@ -51,6 +52,23 @@ namespace TextReplacer.ViewModel {
     public override void Clear() {
       base.Clear();
       AddInfo(_infoTemplateText);
+    }
+
+    public override void Save() {
+      var clone = (TemplateCreatorControlViewModel)TemplateCreatorControlViewModel.Clone();
+      _main.Templates.TemplateCreatorTemplates.Add(clone);
+      base.AddSave(clone);
+    }
+
+    public override void Apply(BindableBaseStartReplace b) {
+      if (b is TemplateCreatorControlViewModel t) {
+        TemplateCreatorControlViewModel = t;
+      }
+    }
+    public override void Remove(BindableBaseStartReplace b) {
+      if (b is TemplateCreatorControlViewModel t) {
+        _main.Templates.TemplateCreatorTemplates.Remove(t);
+      }
     }
   }
 }

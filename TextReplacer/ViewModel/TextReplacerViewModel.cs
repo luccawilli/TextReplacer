@@ -5,7 +5,7 @@ using TextReplacer.Service;
 namespace TextReplacer.ViewModel {
   public class TextReplacerViewModel : BaseViewModel {
 
-    public TextReplacerViewModel() {
+    public TextReplacerViewModel(MainViewModel main) : base(main) {
       TextReplacerControlViewModel = new TextReplacerControlViewModel();
       SetStatusToStandard();
       AddInfo(InfoTemplateText);
@@ -55,6 +55,11 @@ namespace TextReplacer.ViewModel {
     public override void Clear() {
       base.Clear();
       AddInfo(InfoTemplateText);
+    }
+
+    public override void Save() {
+      _main.Templates.TextReplacerTemplates.Add(TextReplacerControlViewModel);
+      base.AddSave(TextReplacerControlViewModel);
     }
     #endregion
   }

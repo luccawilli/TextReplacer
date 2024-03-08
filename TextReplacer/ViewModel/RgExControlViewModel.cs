@@ -47,6 +47,8 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _removeWhitespaces, value);
     }
 
+    public override string Text => RegexPattern;
+
     public override string Start(string input, Func<StringBuilder, Dictionary<String, String>, Regex, String> ApplyOutputSettings) {
       String templateText = ReplacerHelper.ReplaceWorkflow(TemplateText, input);
       String regexPattern = ReplacerHelper.ReplaceWorkflow(RegexPattern, input);

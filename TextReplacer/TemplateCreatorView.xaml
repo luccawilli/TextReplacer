@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:TextReplacer"
              xmlns:t="clr-namespace:TextReplacer.Control"
              xmlns:designData="clr-namespace:TextReplacer.ViewModel"
+             Name="templateCreatorView"
              d:DataContext="{d:DesignInstance {x:Type designData:TemplateCreatorViewModel}}"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="800">
@@ -16,44 +17,55 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border CornerRadius="5" Padding="10,5,5,5" Background="{StaticResource MainBackgroundBrush}">        
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="65"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
+    <Grid Background="{StaticResource MainBackgroundBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Border Padding="10,5,5,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
 
-            <t:InfoMessageList Grid.Row="0" InfoMessages="{Binding InfoMessages}" />
-            <t:StatusCommandToolbar Grid.Row="1"
+                <t:InfoMessageList Grid.Row="0" InfoMessages="{Binding InfoMessages}" />
+                <t:StatusCommandToolbar Grid.Row="1"
                                 ClearCommand="{Binding ClearCommand}" 
                                 SaveCommand="{Binding SaveCommand}" 
                                 RunCommand="{Binding RunCommand}" 
                                 CopyCommand="{Binding CopyCommand}"/>
 
-            <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
-                <Grid Background="White">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <t:TemplateCreatorControl  Grid.Column="0" DataContext="{Binding TemplateCreatorControlViewModel}"></t:TemplateCreatorControl>
-                    <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    <t:ResultSettingPanel Grid.Column="2" 
+                <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
+                    <Grid Background="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <t:TemplateCreatorControl  Grid.Column="0" DataContext="{Binding TemplateCreatorControlViewModel}"></t:TemplateCreatorControl>
+                        <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <t:ResultSettingPanel Grid.Column="2" 
                                       OutputType="{Binding Path=OutputType, Mode=TwoWay}" 
                                       OutputFolderPath="{Binding Path=OutputFolderPath, Mode=TwoWay}"
                                       OutputFileName="{Binding Path=OutputFileName, Mode=TwoWay}"
                                       OutputOverrideExistingFiles="{Binding Path=OutputOverrideExistingFiles, Mode=TwoWay}"/>
-                </Grid>
-            </ContentControl>
+                    </Grid>
+                </ContentControl>
 
-            <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
+                <GridSplitter Grid.Row="3" Height="2" HorizontalAlignment="Stretch" />
                 <t:ResultTextBox Grid.Row="4" ResultText="{Binding ResultText}"
                                 StatusText="{Binding StatusText}" 
                                 StatusForeground="{Binding StatusForeground}" />
-        </Grid>
-    </Border>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Padding="10,5,5,5">
+            <ContentControl Grid.Row="2" Style="{StaticResource MaterialGroup}">
+                <t:TemplatesList Templates="{Binding Templates}" ApplyTemplateCommand="{Binding ApplyTemplateCommand}" RemoveTemplateCommand="{Binding RemoveTemplateCommand}" />
+            </ContentControl>
+        </Border>
+    </Grid>
 </UserControl>

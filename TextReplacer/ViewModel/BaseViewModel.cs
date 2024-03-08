@@ -13,6 +13,12 @@ using TextReplacer.Service;
 namespace TextReplacer.ViewModel {
   public class BaseViewModel : BindableBase {
 
+    protected readonly MainViewModel _main;
+
+    public BaseViewModel(MainViewModel main) {
+      _main = main;
+    }
+
     private Brush _statusForeground;
     public Brush StatusForeground {
       get => _statusForeground;
@@ -75,7 +81,33 @@ namespace TextReplacer.ViewModel {
       }
     }
 
+    private ICommand _removeTemplateCommand;
+    public ICommand RemoveTemplateCommand {
+      get {
+        if (_removeTemplateCommand == null) {
+          _removeTemplateCommand = new RelayCommand(
+              param => RemoveTemplate(param)
+          );
+        }
+        return _removeTemplateCommand;
+      }
+    }
+
+    private ICommand _applyTemplateCommand;
+    public ICommand ApplyTemplateCommand {
+      get {
+        if (_applyTemplateCommand == null) {
+          _applyTemplateCommand = new RelayCommand(
+              param => ApplyTemplate(param)
+          );
+        }
+        return _applyTemplateCommand;
+      }
+    }
+
     public ObservableCollection<InfoMessage> InfoMessages { get; set; } = new ObservableCollection<InfoMessage>();
+
+    public ObservableCollection<BindableBaseStartReplace> Templates { get; set; } = new ObservableCollection<BindableBaseStartReplace>();
 
     private String _resultText;
     public String ResultText {
@@ -129,7 +161,9 @@ namespace TextReplacer.ViewModel {
 
     }
 
-    public virtual void Save() { }
+    public virtual void Save() {
+      _main.Save();
+    }
 
     public virtual void Clear() {
       ResultText = null;
@@ -143,6 +177,35 @@ namespace TextReplacer.ViewModel {
       }
       Clipboard.SetText(ResultText);
       SetStatusInfo("Kopiert!");
+    }
+
+    public void RemoveTemplate(object param) {
+      FrameworkElement element = param as FrameworkElement;
+      BindableBaseStartReplace b = element?.DataContext as BindableBaseStartReplace;
+      if (b == null) {
+        return;
+      }
+      Templates.Remove(b);
+      Remove(b);
+      _main.Save();
+    }
+
+    public virtual void Remove(BindableBaseStartReplace b) {
+
+    }
+
+    private void ApplyTemplate(object param) {
+      FrameworkElement element = param as FrameworkElement;
+      BindableBaseStartReplace b = element?.DataContext as BindableBaseStartReplace;
+      if (b == null) {
+        return;
+      }
+      StatusText = "Aktualisiert";
+      Apply((BindableBaseStartReplace)b.Clone());
+    }
+
+    public virtual void Apply(BindableBaseStartReplace b) {
+
     }
 
     public String ApplyOutputSettings(StringBuilder sb, Dictionary<String, String> replacements, Regex regex) {
@@ -169,6 +232,11 @@ namespace TextReplacer.ViewModel {
 
     protected void AddInfo(String text) {
       InfoMessages.Add(new InfoMessage() { Brush = InfoMessage.TextReplacerBlue, Message = text });
+    }
+
+    protected void AddSave(BindableBaseStartReplace t) {
+      Templates.Add(t);
+      _main.Save();
     }
     #endregion
   }

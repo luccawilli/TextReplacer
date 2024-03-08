@@ -55,8 +55,8 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _tabItems, value);
     }
 
-    public WorkFlowViewModel() {
-      _tabItems.Add(new TabItemElement(Enum.ReplacerType.None, this,new WorkFlowAddControl()));
+    public WorkFlowViewModel(MainViewModel main) : base(main) {
+      _tabItems.Add(new TabItemElement(Enum.ReplacerType.None, new BindableBaseStartReplace(), new WorkFlowAddControl()));
       SetStatusToStandard();
       AddInfo(_infoTemplateText);
     }
@@ -112,7 +112,11 @@ namespace TextReplacer.ViewModel {
     }
 
     public override void Save() {
-      base.Save();
+      var t = new WorkFlowTemplateSaveDto() {
+        TabItems = TabItems.Select(x => x.DataContext).ToList()
+      };
+      _main.Templates.WorkFlowTemplates.Add(t);
+      base.AddSave(new WorkFlowControlViewModel() { TabItems = t.TabItems });
     }
 
   }

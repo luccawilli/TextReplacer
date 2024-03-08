@@ -5,7 +5,7 @@ namespace TextReplacer.ViewModel {
 
     private String _infoTemplateText = "Info: Mit dem Regex-Pattern kann Text extrahiert werden";
 
-    public RgExViewModel() {
+    public RgExViewModel(MainViewModel main) : base(main) {
       RgExControlViewModel = new RgExControlViewModel();
       SetStatusToStandard();
       AddInfo(_infoTemplateText);
@@ -42,5 +42,9 @@ namespace TextReplacer.ViewModel {
       AddInfo(_infoTemplateText);
     }
 
+    public override void Save() {
+      _main.Templates.RgExTemplates.Add(RgExControlViewModel);
+      base.AddSave(RgExControlViewModel);
+    }
   }
 }

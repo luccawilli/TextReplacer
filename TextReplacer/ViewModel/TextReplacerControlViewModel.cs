@@ -34,6 +34,8 @@ namespace TextReplacer.ViewModel {
       set => SetProperty(ref _toInsertLabels, value);
     }
 
+    public override string Text => TemplateText;
+
     public override string Start(string input, Func<StringBuilder, Dictionary<String, String>, Regex, String> ApplyOutputSettings) {
       String templateText = ReplacerHelper.ReplaceWorkflow(TemplateText, input);
       String replacementChars = ReplacerHelper.ReplaceWorkflow(ReplacementChars, input);
