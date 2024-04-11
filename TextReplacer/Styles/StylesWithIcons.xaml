@@ -6,7 +6,7 @@
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type Button}" x:Key="SecondaryButton">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{StaticResource PrimaryViloet}" />
+        <Setter Property="Foreground" Value="Black" />
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="Template">
@@ -100,7 +100,7 @@
 
     <Style TargetType="{x:Type Button}" x:Key="CopyButtonWithIcon">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{StaticResource PrimaryViloet}" />
+        <Setter Property="Foreground" Value="Black" />
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="Template">
@@ -138,7 +138,7 @@
     
     <Style TargetType="{x:Type Button}" x:Key="SaveButtonWithIcon">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{StaticResource PrimaryViloet}" />
+        <Setter Property="Foreground" Value="Black" />
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="Template">
