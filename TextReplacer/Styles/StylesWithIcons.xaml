@@ -15,7 +15,7 @@
                     <Border x:Name="OuterBorder" CornerRadius="3"
                         BorderThickness="2" BorderBrush="Transparent" Padding="1">
                         <Border CornerRadius="4"
-                        BorderThickness="1" BorderBrush="{StaticResource PrimaryViloet}" Background="{TemplateBinding Background}" Padding="6">
+                        BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
                             <ContentPresenter x:Name="contentPresenter" 
                                       ContentTemplate="{TemplateBinding ContentTemplate}" 
                                       Content="{TemplateBinding Content}" 
@@ -109,7 +109,7 @@
                     <Border x:Name="OuterBorder" CornerRadius="3"
                         BorderThickness="2" BorderBrush="Transparent" Padding="1">
                         <Border CornerRadius="4"
-                        BorderThickness="1" BorderBrush="{StaticResource PrimaryViloet}" Background="{TemplateBinding Background}" Padding="6">
+                        BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
                             <DockPanel>
                                 <Image Source="{StaticResource CopyDrawingImage}" Width="15" Margin="5,0,0,0" />
                                 <ContentPresenter x:Name="contentPresenter" 
@@ -147,7 +147,7 @@
                     <Border x:Name="OuterBorder" CornerRadius="3"
                         BorderThickness="2" BorderBrush="Transparent" Padding="1">
                         <Border CornerRadius="4"
-                        BorderThickness="1" BorderBrush="{StaticResource PrimaryViloet}" Background="{TemplateBinding Background}" Padding="6">
+                        BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
                             <DockPanel>
                                 <Image Source="{StaticResource SaveDrawingImage}" Width="15" Margin="5,0,0,0" />
                                 <ContentPresenter x:Name="contentPresenter" 
