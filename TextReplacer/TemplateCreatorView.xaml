@@ -20,7 +20,7 @@
     <Grid Background="{StaticResource MainBackgroundBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Border Padding="10,5,5,5">
             <Grid>

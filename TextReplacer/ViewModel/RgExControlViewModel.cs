@@ -53,8 +53,13 @@ namespace TextReplacer.ViewModel {
       String templateText = ReplacerHelper.ReplaceWorkflow(TemplateText, input);
       String regexPattern = ReplacerHelper.ReplaceWorkflow(RegexPattern, input);
       String charactersToRemove = ReplacerHelper.ReplaceWorkflow(CharactersToRemove, input);
-
-      Regex regex = new Regex(regexPattern);
+      Regex regex;
+      try {
+        regex = new Regex(regexPattern);
+      }
+      catch (RegexParseException) {
+        return "Ungültiges Pattern";
+      }
       MatchCollection matches = regex.Matches(templateText);
 
       Dictionary<String, String> charactersToRemoveDict = GetCharactersToRemoveDictionary(charactersToRemove, RemoveWhitespaces);
