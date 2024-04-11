@@ -67,7 +67,7 @@ namespace TextReplacer.ViewModel {
       Templates.TextReplacerTemplates.ForEach(x => TextReplacerViewModel.Templates.Add(x));
       Templates.RgExTemplates.ForEach(x => RgExViewModel.Templates.Add(x));
       Templates.TemplateCreatorTemplates.ForEach(x => TemplateCreatorViewModel.Templates.Add(x));
-      Templates.WorkFlowTemplates.Select(x => new WorkFlowControlViewModel() { TabItems = x.TabItems }).ToList().ForEach(x => WorkFlowViewModel.Templates.Add(x));
+      Templates.WorkFlowTemplates.Select(x => new WorkFlowControlViewModel(null) { TabItems = x.TabItems }).ToList().ForEach(x => WorkFlowViewModel.Templates.Add(x));
     }
 
     public void Save() {

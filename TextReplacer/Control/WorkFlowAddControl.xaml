@@ -18,13 +18,13 @@
     </UserControl.Resources>
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Text="Fügen Sie einen neuen Schritt hinzu"/>
-        <Button DockPanel.Dock="Bottom" Margin="5,5,5,5" Command="{Binding AddTextReplacerCommand}" Style="{StaticResource SecondaryButton}">
+        <Button DockPanel.Dock="Bottom" Margin="5" Command="{Binding AddTextReplacerCommand}" Style="{StaticResource SecondaryButton}" Width="160">
             <local:CustomTabHeader DockPanel.Dock="Bottom" ImageSource="{StaticResource TextReplacerDrawingImage}" Text="TextReplacer" TextVisibility="Visible" Height="45"/>
         </Button>
-        <Button DockPanel.Dock="Bottom" Margin="5,5,5,5" Command="{Binding AddTemplateCreatorCommand}" Style="{StaticResource SecondaryButton}">
+        <Button DockPanel.Dock="Bottom" Margin="5,5,5,5" Command="{Binding AddTemplateCreatorCommand}" Style="{StaticResource SecondaryButton}" Width="160">
             <local:CustomTabHeader DockPanel.Dock="Bottom" ImageSource="{StaticResource TemplateCreatorDrawingImage}" Text="TemplateCreator" TextVisibility="Visible" Height="45"/>
         </Button>
-        <Button DockPanel.Dock="Bottom" Margin="5,5,5,5" Command="{Binding AddRgExCommand}" Style="{StaticResource SecondaryButton}">
+        <Button DockPanel.Dock="Bottom" Margin="5,5,5,5" Command="{Binding AddRgExCommand}" Style="{StaticResource SecondaryButton}" Width="160">
             <local:CustomTabHeader DockPanel.Dock="Bottom" ImageSource="{StaticResource RgExDrawingImage}" Text="RegExr" TextVisibility="Visible"  Height="45"/>
         </Button>
     </StackPanel>

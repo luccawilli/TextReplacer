@@ -6,7 +6,7 @@
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="{x:Type Button}" x:Key="SecondaryButton">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryViloet}" />
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="Template">
@@ -15,7 +15,7 @@
                     <Border x:Name="OuterBorder" CornerRadius="3"
                         BorderThickness="2" BorderBrush="Transparent" Padding="1">
                         <Border CornerRadius="4"
-                        BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
+                        BorderThickness="1" BorderBrush="{StaticResource PrimaryViloet}" Background="{TemplateBinding Background}" Padding="6">
                             <ContentPresenter x:Name="contentPresenter" 
                                       ContentTemplate="{TemplateBinding ContentTemplate}" 
                                       Content="{TemplateBinding Content}" 
@@ -100,7 +100,7 @@
 
     <Style TargetType="{x:Type Button}" x:Key="CopyButtonWithIcon">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryViloet}" />
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="Template">
@@ -109,7 +109,7 @@
                     <Border x:Name="OuterBorder" CornerRadius="3"
                         BorderThickness="2" BorderBrush="Transparent" Padding="1">
                         <Border CornerRadius="4"
-                        BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
+                        BorderThickness="1" BorderBrush="{StaticResource PrimaryViloet}" Background="{TemplateBinding Background}" Padding="6">
                             <DockPanel>
                                 <Image Source="{StaticResource CopyDrawingImage}" Width="15" Margin="5,0,0,0" />
                                 <ContentPresenter x:Name="contentPresenter" 
@@ -138,7 +138,7 @@
     
     <Style TargetType="{x:Type Button}" x:Key="SaveButtonWithIcon">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryViloet}" />
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="Template">
@@ -147,7 +147,7 @@
                     <Border x:Name="OuterBorder" CornerRadius="3"
                         BorderThickness="2" BorderBrush="Transparent" Padding="1">
                         <Border CornerRadius="4"
-                        BorderThickness="1" BorderBrush="LightGray" Background="{TemplateBinding Background}" Padding="6">
+                        BorderThickness="1" BorderBrush="{StaticResource PrimaryViloet}" Background="{TemplateBinding Background}" Padding="6">
                             <DockPanel>
                                 <Image Source="{StaticResource SaveDrawingImage}" Width="15" Margin="5,0,0,0" />
                                 <ContentPresenter x:Name="contentPresenter" 
