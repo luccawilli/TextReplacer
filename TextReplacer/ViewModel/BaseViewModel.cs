@@ -175,7 +175,13 @@ namespace TextReplacer.ViewModel {
       if (String.IsNullOrEmpty(ResultText)) {
         return;
       }
-      Clipboard.SetText(ResultText);
+      try {
+        Clipboard.SetText(ResultText);
+      }
+      catch (Exception ex) {
+        SetStatusDanger("Fehler beim Kopieren: " + ex.Message);
+        return;
+      }
       SetStatusInfo("Kopiert!");
     }
 
